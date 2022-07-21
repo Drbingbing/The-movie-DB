@@ -32,11 +32,11 @@ extension MoviesProvider: Endpoint {
     var params: [String : Any]? {
         switch self {
         case let .getNowPlayingMovies(page):
-            return ["page": page]
+            return ["page": page, "region": "TW"]
         case let .getPopularMovies(page):
-            return ["page": page]
+            return ["page": page, "region": "TW"]
         case let .getUpcomingMovies(page):
-            return ["page": page]
+            return ["page": page, "region": "TW"]
         }
     }
     

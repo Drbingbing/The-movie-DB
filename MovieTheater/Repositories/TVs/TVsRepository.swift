@@ -15,8 +15,26 @@ final class TVsRepository: TVsRepositoryProtocol {
         self.client = client
     }
     
-    func getOnAirTVs(page: Int) -> AnyPublisher<[TV], Error> {
-        client.getOnAirTvs(page: page)
+    func getOnAirTvShows(page: Int) -> AnyPublisher<[TvShow], Error> {
+        client.getOnAirTvShows(page: page)
+            .map(\.results)
+            .eraseToAnyPublisher()
+    }
+    
+    func getAiringTodayTvShows(page: Int) -> AnyPublisher<[TvShow], Error> {
+        client.getAiringTodayTvShows(page: page)
+            .map(\.results)
+            .eraseToAnyPublisher()
+    }
+    
+    func getPopularTvShows(page: Int) -> AnyPublisher<[TvShow], Error> {
+        client.getPopularTvShows(page: page)
+            .map(\.results)
+            .eraseToAnyPublisher()
+    }
+    
+    func getTopRatedTvShows(page: Int) -> AnyPublisher<[TvShow], Error> {
+        client.getTopRatedTvShows(page: page)
             .map(\.results)
             .eraseToAnyPublisher()
     }

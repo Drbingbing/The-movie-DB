@@ -16,4 +16,14 @@ enum LocalizedStrings: String, Localizable {
     case nowPlayingMoviesSearchTitle
     case popularMoviesSearchTitle
     case upcomingMoviesSearchTitle
+    
+    case airingTodayTvTitle
+    case popularTvTitle
+    case onTheAirTvTitle
+    case topRatedTvTitle
+    
+    case airingTodayTvSearchTitle
+    case popularTvSearchTitle
+    case onTheAirTvSearchTitle
+    case topRatedTvSearchTitle
 }

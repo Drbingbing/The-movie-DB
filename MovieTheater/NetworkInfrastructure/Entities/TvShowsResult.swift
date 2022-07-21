@@ -7,9 +7,9 @@
 
 import Foundation
 
-struct TVsResult: Decodable {
+struct TvShowsResult: Decodable {
     
-    let results: [TV]
+    let results: [TvShow]
     let page: Int
     
     let totalResults: Int

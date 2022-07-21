@@ -26,7 +26,7 @@ struct RootView: View {
             }
             
             NavigationView {
-                TVsRootView()
+                TvShowsRootView()
                     .toolbar {
                         ToolbarItem(placement: .navigationBarLeading) {
                             TMDBView(fileName: "tmdb_short")

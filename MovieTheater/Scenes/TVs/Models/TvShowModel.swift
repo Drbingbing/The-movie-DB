@@ -7,23 +7,25 @@
 
 import Foundation
 
-final class TVModel: Hashable, Equatable {
+final class TvShowModel: Hashable, Equatable {
+    
+    static func == (lhs: TvShowModel, rhs: TvShowModel) -> Bool {
+        return lhs.id == rhs.id
+    }
+    
+    let id: UUID
+    let name: String
+    let posterURL: URL?
+    
+    init(tv: TvShow) {
+        self.id = UUID()
+        self.name = tv.name
+        self.posterURL = tv.posterURL
+    }
+    
     
     func hash(into hasher: inout Hasher) {
         hasher.combine(id)
     }
     
-    static func == (lhs: TVModel, rhs: TVModel) -> Bool {
-        return lhs.id == rhs.id
-    }
-    
-    let id: Int
-    let name: String
-    let posterURL: URL?
-    
-    init(tv: TV) {
-        self.name = tv.name
-        self.id = tv.id
-        self.posterURL = tv.posterURL
-    }
 }

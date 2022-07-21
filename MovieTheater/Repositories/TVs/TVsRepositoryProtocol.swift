@@ -9,6 +9,11 @@ import Combine
 
 protocol TVsRepositoryProtocol {
     
-    func getOnAirTVs(page: Int) -> AnyPublisher<[TV], Error>
+    func getOnAirTvShows(page: Int) -> AnyPublisher<[TvShow], Error>
     
+    func getAiringTodayTvShows(page: Int) -> AnyPublisher<[TvShow], Error>
+    
+    func getTopRatedTvShows(page: Int) -> AnyPublisher<[TvShow], Error>
+    
+    func getPopularTvShows(page: Int) -> AnyPublisher<[TvShow], Error>
 }

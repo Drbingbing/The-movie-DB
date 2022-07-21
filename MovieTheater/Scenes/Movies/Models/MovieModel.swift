@@ -9,7 +9,7 @@ import Foundation
 
 final class MovieModel: Hashable, Equatable {
     
-    let id: Int
+    let id: UUID
     
     let title: String
     let releaseDate: String?
@@ -18,7 +18,7 @@ final class MovieModel: Hashable, Equatable {
     let overview: String
     
     init(movie: Movie) {
-        self.id = movie.id
+        self.id = UUID()
         self.title = movie.title
         self.posterURL = movie.posterURL
         self.backdropURL = movie.backdropURL

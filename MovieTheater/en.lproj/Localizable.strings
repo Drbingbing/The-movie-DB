@@ -12,3 +12,13 @@
 "nowPlayingMoviesSearchTitle" = "Upcoming";
 "popularMoviesSearchTitle" = "Popular";
 "upcomingMoviesSearchTitle" = "Upcoming";
+
+"airingTodayTVTitle" = "TV Shows Airing Today";
+"popularTVTitle" = "Popular TV Shows";
+"onTheAirTVTitle" = "Currently Airing TV Shows";
+"topRatedTVTitle" = "Top Rated TV Shows";
+
+"airingTodayTvSearchTitle" = "Popular";
+"popularTvSearchTitle" = "Airing Today";
+"onTheAirTvSearchTitle" = "On TV";
+"topRatedTvSearchTitle" = "Top Rated";

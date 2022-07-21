@@ -47,7 +47,7 @@ extension Movie: ImageConfigurable {
 }
 
 
-extension TV: ImageConfigurable {
+extension TvShow: ImageConfigurable {
     
     var posterURL: URL? {
         guard let posterPath = posterPath else { return nil }

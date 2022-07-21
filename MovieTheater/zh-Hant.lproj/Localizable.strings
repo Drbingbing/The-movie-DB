@@ -12,3 +12,13 @@
 "nowPlayingMoviesSearchTitle" = "上映中";
 "popularMoviesSearchTitle" = "熱門";
 "upcomingMoviesSearchTitle" = "即將上映";
+
+"airingTodayTvTitle" = "今日播出的電視節目";
+"popularTvTitle" = "熱門電視節目";
+"onTheAirTvTitle" = "正在播出的電視節目";
+"topRatedTvTitle" = "評分最高的電視節目";
+
+"airingTodayTvSearchTitle" = "今日播出";
+"popularTvSearchTitle" = "熱門";
+"onTheAirTvSearchTitle" = "電視播出";
+"topRatedTvSearchTitle" = "評分最高";
