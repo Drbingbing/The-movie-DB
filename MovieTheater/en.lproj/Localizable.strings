@@ -1,0 +1,14 @@
+/* 
+  Localizable.strings
+  MovieTheater
+
+  Created by Bing Bing on 2022/7/20.
+  
+*/
+"popularMoviesTitle" = "Popular";
+"nowPlayingMoviesTitle" = "Now Playing";
+"upcomingMoviesTitle" = "Upcoming Movies";
+
+"nowPlayingMoviesSearchTitle" = "Upcoming";
+"popularMoviesSearchTitle" = "Popular";
+"upcomingMoviesSearchTitle" = "Upcoming";

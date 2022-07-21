@@ -1,0 +1,14 @@
+/* 
+  Localizable.strings
+  MovieTheater
+
+  Created by Bing Bing on 2022/7/20.
+  
+*/
+"popularMoviesTitle" = "熱門電影";
+"nowPlayingMoviesTitle" = "現正熱映中的電影";
+"upcomingMoviesTitle" = "即將上映的電影";
+
+"nowPlayingMoviesSearchTitle" = "上映中";
+"popularMoviesSearchTitle" = "熱門";
+"upcomingMoviesSearchTitle" = "即將上映";
