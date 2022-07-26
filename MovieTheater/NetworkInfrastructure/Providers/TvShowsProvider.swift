@@ -18,7 +18,7 @@ enum TvShowsProvider {
     case getTopRatedTvShows(page: Int)
 }
 
-extension TvShowsProvider: Endpoint {
+extension TvShowsProvider: TMDBEndpoint {
     
     var path: String {
         switch self {

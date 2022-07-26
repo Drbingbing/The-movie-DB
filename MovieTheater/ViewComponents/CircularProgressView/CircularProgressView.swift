@@ -9,8 +9,8 @@ import SwiftUI
 
 struct CircularProgressView: View {
     
-    init(value: Double) {
-        self.percent = value / 10
+    init(value: Double, base: Double = 10) {
+        self.percent = value / base
         self.value = value
     }
     

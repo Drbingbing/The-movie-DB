@@ -12,7 +12,7 @@ enum GenreProvider {
     case getAll
 }
 
-extension GenreProvider: Endpoint {
+extension GenreProvider: TMDBEndpoint {
     
     var path: String {
         switch self {

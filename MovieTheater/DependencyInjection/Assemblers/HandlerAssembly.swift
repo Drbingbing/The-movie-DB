@@ -15,5 +15,10 @@ final class HandlerAssembly: Assembly {
             return ConfigurationHandler()
         }
         .inObjectScope(.container)
+        
+        container.register(LanguageCodesHandlerProtocol.self) { _ in
+            return LanguageCodesHandler()
+        }
+        .inObjectScope(.container)
     }
 }

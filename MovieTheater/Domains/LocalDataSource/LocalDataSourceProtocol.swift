@@ -10,4 +10,6 @@ import Foundation
 protocol LocalDataSourceProtocol {
     
     func genreRepository() -> GenreLocalRepositoryProtocol
+    
+    func languageCodesRepository() -> LanguageCodesLocalRepositoryProtocol
 }

@@ -20,7 +20,7 @@ enum MoviesProvider {
     case getMovieCredits(id: Int)
 }
 
-extension MoviesProvider: Endpoint {
+extension MoviesProvider: TMDBEndpoint {
     
     var path: String {
         switch self {

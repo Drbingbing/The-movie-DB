@@ -10,9 +10,11 @@ import Combine
 
 final class SplashViewModel: ObservableObject {
     
-    let configurationInteractor: ConfigurationRepositoryProtocol
-    let genreInteractor: GenreRepositoryProtocol
-    let configurationHandler: ConfigurationHandlerProtocol
+    private let configurationInteractor: ConfigurationRepositoryProtocol
+    private let genreInteractor: GenreRepositoryProtocol
+    private let languageCodesInteractor: LanguageCodesRepositoryProtocol
+    private let configurationHandler: ConfigurationHandlerProtocol
+    private let languageCodesHandler: LanguageCodesHandlerProtocol
     
     private var cancellables: [AnyCancellable] = []
     
@@ -23,6 +25,8 @@ final class SplashViewModel: ObservableObject {
         self.configurationInteractor = remoteDataSource.configurationRepository()
         self.configurationHandler = DIContainer.shared.resolve()
         self.genreInteractor = DIContainer.shared.resolve()
+        self.languageCodesInteractor = DIContainer.shared.resolve()
+        self.languageCodesHandler = DIContainer.shared.resolve()
         self.binding()
     }
     
@@ -34,19 +38,31 @@ final class SplashViewModel: ObservableObject {
                 self.state = .end
             } receiveValue: { [weak self] configuration, genres in
                 self?.updateConfiguration(configuration)
-                self?.updateAvilableGenres(genres)
+                self?.updateAvailableGenres(genres)
             }
             .store(in: &cancellables)
 
+        languageCodesInteractor.fetchAll()
+            .catch { error in
+                Empty(completeImmediately: true)
+            }
+            .sink { [weak self] codes in
+                self?.updateLanguageCodes(codes)
+            }
+            .store(in: &cancellables)
     }
     
     
-    func updateConfiguration(_ configuration: Configuration?) {
+    private func updateConfiguration(_ configuration: Configuration?) {
         configurationHandler.setConfiguration(configuration)
     }
     
-    func updateAvilableGenres(_ genres: [Genre]) {
+    private func updateAvailableGenres(_ genres: [Genre]) {
         
+    }
+    
+    private func updateLanguageCodes(_ codes: [LanguageCode]) {
+        languageCodesHandler.setLanguageCodes(codes)
     }
 }
 

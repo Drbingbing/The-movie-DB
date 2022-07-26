@@ -51,16 +51,23 @@ struct RootView: View {
                     }
             }
             .tabItem {
-                Image(systemName: "person")
+                Image(systemName: "star")
                 Text(LocalizedStrings.peopleTabBarTitle())
             }
             
             NavigationView {
-                
+                AccountRootView()
+                    .toolbar {
+                        ToolbarItem(placement: .navigationBarLeading) {
+                            TMDBView(fileName: "tmdb_short")
+                                .frame(width: 24, height: 24)
+                                .clipShape(RoundedRectangle(cornerRadius: 4))
+                        }
+                    }
             }
             .tabItem {
-                Image(systemName: "magnifyingglass")
-                Text(LocalizedStrings.searchTabBarTitle())
+                Image(systemName: "person")
+                Text(LocalizedStrings.accountTabBarTitle())
             }
         }
     }

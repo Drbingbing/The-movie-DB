@@ -33,6 +33,7 @@ enum LocalizedStrings: String, Localizable {
     case searchTabBarTitle
     case tvShowTabBarTitle
     case peopleTabBarTitle
+    case accountTabBarTitle
     
     case movieStatusRumored
     case movieStatusPlanned

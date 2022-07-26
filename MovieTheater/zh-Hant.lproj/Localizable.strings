@@ -29,6 +29,7 @@
 "peopleTabBarTitle" = "人物";
 "tvShowTabBarTitle" = "電視";
 "searchTabBarTitle" = "搜索";
+"accountTabBarTitle" = "個人資訊";
 
 "movieStatusRumored" = "傳聞";
 "movieStatusPlanned" = "計畫中";

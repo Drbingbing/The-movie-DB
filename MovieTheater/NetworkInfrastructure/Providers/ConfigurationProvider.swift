@@ -13,7 +13,7 @@ enum ConfigurationProvider {
     
 }
 
-extension ConfigurationProvider: Endpoint {
+extension ConfigurationProvider: TMDBEndpoint {
     
     var path: String {
         switch self {

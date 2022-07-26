@@ -41,19 +41,56 @@ struct MovieDetailView: View {
                 HStack(alignment: .center, spacing: 0) {
                     
                     Button(action: {}) {
-                        VstackLabel(image: "Reviews", title: "Reviews")
+                        VStack {
+                            Image(systemName: "plus")
+                                .resizable()
+                                .font(.body.bold())
+                                .frame(width: 20, height: 20)
+                            
+                            Text("新增至清單")
+                                .font(.system(size: 12))
+                        }
+                        .foregroundColor(.black)
+                        .padding()
                     }
                       
                     Button(action: {}) {
-                        VstackLabel(image: "PlayVideo", title: "Trailers")
+                        VStack {
+                            Image(systemName: "heart")
+                                .resizable()
+                                .font(.body.bold())
+                                .frame(width: 22, height: 20)
+                            Text("收藏")
+                                .font(.system(size: 12))
+                        }
+                        .foregroundColor(.black)
+                        .padding()
                     }
                         
                     Button(action: movieModel.showingCredits) {
-                        VstackLabel(image: "Cast", title: "Credits")
+                        VStack {
+                            Image(systemName: "bookmark")
+                                .resizable()
+                                .font(.body.bold())
+                                .frame(width: 16, height: 20)
+                            Text("新增至待看清單")
+                                .font(.system(size: 12))
+                        }
+                        .foregroundColor(.black)
+                        .padding()
                     }
                         
                     Button(action: {}) {
-                        VstackLabel(image: "SimilarMovies", title: "Similars")
+                        VStack {
+                            Image(systemName: "hand.thumbsup")
+                                .resizable()
+                                .font(.body.bold())
+                                .frame(width: 20, height: 20)
+                            Text("評分")
+                                .font(.system(size: 12))
+                        }
+                        .foregroundColor(.black)
+                        .padding()
                     }
                 }
                 
@@ -127,7 +164,7 @@ struct MovieDetailView: View {
                         Spacer()
                     }
                     
-                    Text(CountryCodeHelper.countryName(movie.originLanguage))
+                    Text(movie.originLanguage)
                         .padding(.vertical, 4)
                 }
                 .padding(.vertical, 8)

@@ -7,15 +7,12 @@
 
 import Foundation
 
-protocol Endpoint {
+protocol TMDBEndpoint: Endpoint {
     
-    var path: String { get }
-    var params: [String: Any]? { get }
-    var parameterEncoding: ParameterEndcoding { get }
-    var method: HttpMethod { get }
+    var headers: [String: String]? { get }
 }
 
-extension Endpoint {
+extension TMDBEndpoint {
     
     private var scheme: String {
         return "https"
@@ -31,6 +28,10 @@ extension Endpoint {
     
     private var language: String {
         return "zh"
+    }
+    
+    var headers: [String: String]? {
+        return nil
     }
     
     var urlComponents: URLComponents {
@@ -70,6 +71,12 @@ extension Endpoint {
         var request = URLRequest(url: url)
         request.httpMethod = method.rawValue
         
+        if let headers = headers {
+            for (key, value) in headers {
+                request.setHeader(for: key, with: value)
+            }
+        }
+        
         guard let params = params, method != .get else { return request }
         
         switch parameterEncoding {
@@ -91,13 +98,3 @@ extension Endpoint {
     }
 }
 
-enum HttpMethod: String {
-    case get = "GET"
-    case post = "POST"
-}
-
-enum ParameterEndcoding {
-    case defaultEncoding
-    case jsonEndcoding
-    case compositeEndcoding
-}

@@ -40,6 +40,12 @@ final class RemoteDataSource: RemoteDataSourceProtocol {
         return GenreRemoteRepository(client: client)
     }
     
+    func languageCodesRepository() -> LanaguageCodesRemoteRepositoryProtocol {
+        let client = LanguageCodesClient()
+        
+        return LanguageCodesRemoteRepository(client: client)
+    }
+    
     func configure(apiKey: String, readAccessToken: String) {
         NetworkConfiguration.shared.configuration(apiKey: apiKey, readAccessToken: readAccessToken)
     }

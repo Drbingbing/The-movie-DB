@@ -31,7 +31,7 @@
 		4417619F2873E2B4004C7DCE /* APIClientError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4417619E2873E2B4004C7DCE /* APIClientError.swift */; };
 		441761A12873E366004C7DCE /* ConfigurationClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441761A02873E366004C7DCE /* ConfigurationClient.swift */; };
 		441761A42873E3D3004C7DCE /* ConfigurationProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441761A32873E3D3004C7DCE /* ConfigurationProvider.swift */; };
-		441761A62873E3FB004C7DCE /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441761A52873E3FB004C7DCE /* Endpoint.swift */; };
+		441761A62873E3FB004C7DCE /* TMDBEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441761A52873E3FB004C7DCE /* TMDBEndpoint.swift */; };
 		441761A82873EA16004C7DCE /* NetworkConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441761A72873EA16004C7DCE /* NetworkConfiguration.swift */; };
 		441761AC2873EE17004C7DCE /* Dictionary+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441761AB2873EE17004C7DCE /* Dictionary+Extensions.swift */; };
 		441761AE2873EEAC004C7DCE /* URLRequest+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 441761AD2873EEAC004C7DCE /* URLRequest+Extensions.swift */; };
@@ -109,6 +109,26 @@
 		44CF1598288E9F5300E9DC05 /* CountryCodeHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44CF1597288E9F5300E9DC05 /* CountryCodeHelper.swift */; };
 		44CF159A288F77F000E9DC05 /* CountryCode.json in Resources */ = {isa = PBXBuildFile; fileRef = 44CF1599288F77F000E9DC05 /* CountryCode.json */; };
 		44CF159C288F782600E9DC05 /* CountryCodesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44CF159B288F782600E9DC05 /* CountryCodesProvider.swift */; };
+		44CF159E288F884500E9DC05 /* LanguageCodesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44CF159D288F884500E9DC05 /* LanguageCodesProvider.swift */; };
+		44CF15A1288F889600E9DC05 /* DataHubEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44CF15A0288F889600E9DC05 /* DataHubEndpoint.swift */; };
+		44CF15A3288F88C500E9DC05 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44CF15A2288F88C500E9DC05 /* Endpoint.swift */; };
+		44CF15A6288F8A0400E9DC05 /* LanguageCodesClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44CF15A5288F8A0400E9DC05 /* LanguageCodesClient.swift */; };
+		44CF15A8288F8A2C00E9DC05 /* LanguageCodesClientProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44CF15A7288F8A2C00E9DC05 /* LanguageCodesClientProtocol.swift */; };
+		44CF15AA288F8B6000E9DC05 /* LanguageCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44CF15A9288F8B6000E9DC05 /* LanguageCode.swift */; };
+		44CF15AD288F8C3B00E9DC05 /* LanguageCodesRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44CF15AC288F8C3B00E9DC05 /* LanguageCodesRepositoryProtocol.swift */; };
+		44CF15AF288F8C9000E9DC05 /* LanguageCodesRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44CF15AE288F8C9000E9DC05 /* LanguageCodesRepository.swift */; };
+		44CF15B2288F8CCC00E9DC05 /* LanaguageCodesRemoteRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44CF15B1288F8CCC00E9DC05 /* LanaguageCodesRemoteRepositoryProtocol.swift */; };
+		44CF15B5288F8D0200E9DC05 /* LanguageCodesLocalRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44CF15B4288F8D0200E9DC05 /* LanguageCodesLocalRepositoryProtocol.swift */; };
+		44CF15B9288F8D8400E9DC05 /* LanguageCodesRemoteRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44CF15B8288F8D8400E9DC05 /* LanguageCodesRemoteRepository.swift */; };
+		44CF15BB288F926C00E9DC05 /* LanguageCodesLocalRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44CF15BA288F926C00E9DC05 /* LanguageCodesLocalRepository.swift */; };
+		44CF15BE288F931700E9DC05 /* CDLanguageCode+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44CF15BC288F931700E9DC05 /* CDLanguageCode+CoreDataClass.swift */; };
+		44CF15BF288F931700E9DC05 /* CDLanguageCode+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44CF15BD288F931700E9DC05 /* CDLanguageCode+CoreDataProperties.swift */; };
+		44CF15C3288F947200E9DC05 /* CDLanguageCode+PersistanceStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44CF15C2288F947200E9DC05 /* CDLanguageCode+PersistanceStore.swift */; };
+		44CF15C5288F999000E9DC05 /* LanguageCodesHandlerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44CF15C4288F999000E9DC05 /* LanguageCodesHandlerProtocol.swift */; };
+		44CF15C7288F9B3A00E9DC05 /* Entities+LanguageName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44CF15C6288F9B3A00E9DC05 /* Entities+LanguageName.swift */; };
+		44CF15CD288FCCD600E9DC05 /* AccountRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44CF15CC288FCCD600E9DC05 /* AccountRootView.swift */; };
+		44CF15D0288FDA5E00E9DC05 /* AccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44CF15CF288FDA5E00E9DC05 /* AccountViewModel.swift */; };
+		44CF15D2288FDF1F00E9DC05 /* AuthProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44CF15D1288FDF1F00E9DC05 /* AuthProvider.swift */; };
 		44F3E46A28865731006B6D60 /* ErrorPlaceholder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F3E46928865731006B6D60 /* ErrorPlaceholder.swift */; };
 		44F3E46D28869E40006B6D60 /* TvShowsRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F3E46C28869E40006B6D60 /* TvShowsRootView.swift */; };
 		44F3E47028869F24006B6D60 /* TvShowsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F3E46F28869F24006B6D60 /* TvShowsViewModel.swift */; };
@@ -187,7 +207,7 @@
 		4417619E2873E2B4004C7DCE /* APIClientError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClientError.swift; sourceTree = "<group>"; };
 		441761A02873E366004C7DCE /* ConfigurationClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationClient.swift; sourceTree = "<group>"; };
 		441761A32873E3D3004C7DCE /* ConfigurationProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationProvider.swift; sourceTree = "<group>"; };
-		441761A52873E3FB004C7DCE /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
+		441761A52873E3FB004C7DCE /* TMDBEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMDBEndpoint.swift; sourceTree = "<group>"; };
 		441761A72873EA16004C7DCE /* NetworkConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkConfiguration.swift; sourceTree = "<group>"; };
 		441761AB2873EE17004C7DCE /* Dictionary+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Dictionary+Extensions.swift"; sourceTree = "<group>"; };
 		441761AD2873EEAC004C7DCE /* URLRequest+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLRequest+Extensions.swift"; sourceTree = "<group>"; };
@@ -264,6 +284,26 @@
 		44CF1597288E9F5300E9DC05 /* CountryCodeHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryCodeHelper.swift; sourceTree = "<group>"; };
 		44CF1599288F77F000E9DC05 /* CountryCode.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = CountryCode.json; sourceTree = "<group>"; };
 		44CF159B288F782600E9DC05 /* CountryCodesProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryCodesProvider.swift; sourceTree = "<group>"; };
+		44CF159D288F884500E9DC05 /* LanguageCodesProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageCodesProvider.swift; sourceTree = "<group>"; };
+		44CF15A0288F889600E9DC05 /* DataHubEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataHubEndpoint.swift; sourceTree = "<group>"; };
+		44CF15A2288F88C500E9DC05 /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
+		44CF15A5288F8A0400E9DC05 /* LanguageCodesClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageCodesClient.swift; sourceTree = "<group>"; };
+		44CF15A7288F8A2C00E9DC05 /* LanguageCodesClientProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageCodesClientProtocol.swift; sourceTree = "<group>"; };
+		44CF15A9288F8B6000E9DC05 /* LanguageCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageCode.swift; sourceTree = "<group>"; };
+		44CF15AC288F8C3B00E9DC05 /* LanguageCodesRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageCodesRepositoryProtocol.swift; sourceTree = "<group>"; };
+		44CF15AE288F8C9000E9DC05 /* LanguageCodesRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageCodesRepository.swift; sourceTree = "<group>"; };
+		44CF15B1288F8CCC00E9DC05 /* LanaguageCodesRemoteRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanaguageCodesRemoteRepositoryProtocol.swift; sourceTree = "<group>"; };
+		44CF15B4288F8D0200E9DC05 /* LanguageCodesLocalRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageCodesLocalRepositoryProtocol.swift; sourceTree = "<group>"; };
+		44CF15B8288F8D8400E9DC05 /* LanguageCodesRemoteRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageCodesRemoteRepository.swift; sourceTree = "<group>"; };
+		44CF15BA288F926C00E9DC05 /* LanguageCodesLocalRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageCodesLocalRepository.swift; sourceTree = "<group>"; };
+		44CF15BC288F931700E9DC05 /* CDLanguageCode+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CDLanguageCode+CoreDataClass.swift"; sourceTree = "<group>"; };
+		44CF15BD288F931700E9DC05 /* CDLanguageCode+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CDLanguageCode+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		44CF15C2288F947200E9DC05 /* CDLanguageCode+PersistanceStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CDLanguageCode+PersistanceStore.swift"; sourceTree = "<group>"; };
+		44CF15C4288F999000E9DC05 /* LanguageCodesHandlerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageCodesHandlerProtocol.swift; sourceTree = "<group>"; };
+		44CF15C6288F9B3A00E9DC05 /* Entities+LanguageName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Entities+LanguageName.swift"; sourceTree = "<group>"; };
+		44CF15CC288FCCD600E9DC05 /* AccountRootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountRootView.swift; sourceTree = "<group>"; };
+		44CF15CF288FDA5E00E9DC05 /* AccountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewModel.swift; sourceTree = "<group>"; };
+		44CF15D1288FDF1F00E9DC05 /* AuthProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthProvider.swift; sourceTree = "<group>"; };
 		44F3E46928865731006B6D60 /* ErrorPlaceholder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorPlaceholder.swift; sourceTree = "<group>"; };
 		44F3E46C28869E40006B6D60 /* TvShowsRootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TvShowsRootView.swift; sourceTree = "<group>"; };
 		44F3E46F28869F24006B6D60 /* TvShowsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TvShowsViewModel.swift; sourceTree = "<group>"; };
@@ -410,6 +450,7 @@
 		441761732872B811004C7DCE /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				44CF15CB288FCCC700E9DC05 /* Account */,
 				44CF158F288E92AD00E9DC05 /* Actors */,
 				44F3E4912887AAF4006B6D60 /* People */,
 				44F3E46B28869DB6006B6D60 /* TVs */,
@@ -450,6 +491,8 @@
 		4417617C2873D921004C7DCE /* Repositories */ = {
 			isa = PBXGroup;
 			children = (
+				44CF15D4288FE2BA00E9DC05 /* Auth */,
+				44CF15AB288F8C1700E9DC05 /* LanguageCodes */,
 				447C362A288A3D4900C7C966 /* Genre */,
 				44F3E4A22887D2A2006B6D60 /* People */,
 				44F3E4792886A3F4006B6D60 /* TVs */,
@@ -522,12 +565,12 @@
 		441761912873DE39004C7DCE /* NetworkInfrastructure */ = {
 			isa = PBXGroup;
 			children = (
+				44CF159F288F888000E9DC05 /* Endpoint */,
 				441761A92873EDFB004C7DCE /* Helpers */,
 				441761A22873E3BD004C7DCE /* Providers */,
 				4417619B2873E064004C7DCE /* Dependencies */,
 				441761962873DED9004C7DCE /* Entities */,
 				441761922873DE96004C7DCE /* Clients */,
-				441761A52873E3FB004C7DCE /* Endpoint.swift */,
 				441761A72873EA16004C7DCE /* NetworkConfiguration.swift */,
 			);
 			path = NetworkInfrastructure;
@@ -536,6 +579,7 @@
 		441761922873DE96004C7DCE /* Clients */ = {
 			isa = PBXGroup;
 			children = (
+				44CF15A4288F89EF00E9DC05 /* LanguageCodesClient */,
 				447C3632288A3E9C00C7C966 /* GenreClient */,
 				44F3E49B2887AFC4006B6D60 /* PeopleClient */,
 				44F3E4802886A51E006B6D60 /* TVsClient */,
@@ -587,6 +631,8 @@
 				44F3E4A02887B031006B6D60 /* PeopleProvider.swift */,
 				447C3639288A3F7200C7C966 /* GenreProvider.swift */,
 				44CF159B288F782600E9DC05 /* CountryCodesProvider.swift */,
+				44CF159D288F884500E9DC05 /* LanguageCodesProvider.swift */,
+				44CF15D1288FDF1F00E9DC05 /* AuthProvider.swift */,
 			);
 			path = Providers;
 			sourceTree = "<group>";
@@ -624,6 +670,7 @@
 				441761BC2874173B004C7DCE /* ConfigurationHandlerProtocol.swift */,
 				441761BE28741920004C7DCE /* ConfigurationHandler.swift */,
 				441761C028741959004C7DCE /* ImageConfigurationHandler.swift */,
+				44CF15C4288F999000E9DC05 /* LanguageCodesHandlerProtocol.swift */,
 			);
 			path = Handlers;
 			sourceTree = "<group>";
@@ -637,6 +684,7 @@
 				441761FF28757454004C7DCE /* Subscriber_Completion+Extensions.swift */,
 				44176209287589FA004C7DCE /* Entities+Confiugration.swift */,
 				44F3E4BB2887EDDB006B6D60 /* String+Localized.swift */,
+				44CF15C6288F9B3A00E9DC05 /* Entities+LanguageName.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -755,6 +803,7 @@
 				447C361F288953BC00C7C966 /* CoreDataStack */,
 				447C3641288A429400C7C966 /* PersistenceStore.swift */,
 				447C3652288A506800C7C966 /* CDGenre+PersistenceStore.swift */,
+				44CF15C2288F947200E9DC05 /* CDLanguageCode+PersistanceStore.swift */,
 			);
 			path = CoreDataInfrastructure;
 			sourceTree = "<group>";
@@ -780,12 +829,10 @@
 		447C362A288A3D4900C7C966 /* Genre */ = {
 			isa = PBXGroup;
 			children = (
+				44CF15B7288F8D5A00E9DC05 /* Local */,
+				44CF15B6288F8D5000E9DC05 /* Remote */,
 				447C362B288A3D6A00C7C966 /* GenreRepository.swift */,
 				447C3656288A563600C7C966 /* GenreRepositoryProtocol.swift */,
-				447C363D288A41EF00C7C966 /* GenreRemoteRepository.swift */,
-				447C362D288A3D8C00C7C966 /* GenreRemoteRepositoryProtocol.swift */,
-				447C363F288A422200C7C966 /* GenreLocalRepository.swift */,
-				447C363B288A419400C7C966 /* GenreLocalRepositoryProtocol.swift */,
 			);
 			path = Genre;
 			sourceTree = "<group>";
@@ -810,8 +857,8 @@
 		447C3646288A464500C7C966 /* Entities */ = {
 			isa = PBXGroup;
 			children = (
-				447C364A288A47E200C7C966 /* CDGenre+CoreDataClass.swift */,
-				447C364B288A47E200C7C966 /* CDGenre+CoreDataProperties.swift */,
+				44CF15C1288F936700E9DC05 /* CDLanguageCode */,
+				44CF15C0288F935D00E9DC05 /* CDGenre */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -854,6 +901,7 @@
 			isa = PBXGroup;
 			children = (
 				447C3665288E41C700C7C966 /* Language.swift */,
+				44CF15A9288F8B6000E9DC05 /* LanguageCode.swift */,
 			);
 			path = LanguageEntity;
 			sourceTree = "<group>";
@@ -900,6 +948,114 @@
 				44CF1599288F77F000E9DC05 /* CountryCode.json */,
 			);
 			path = ContryCodeHelper;
+			sourceTree = "<group>";
+		};
+		44CF159F288F888000E9DC05 /* Endpoint */ = {
+			isa = PBXGroup;
+			children = (
+				441761A52873E3FB004C7DCE /* TMDBEndpoint.swift */,
+				44CF15A0288F889600E9DC05 /* DataHubEndpoint.swift */,
+				44CF15A2288F88C500E9DC05 /* Endpoint.swift */,
+			);
+			path = Endpoint;
+			sourceTree = "<group>";
+		};
+		44CF15A4288F89EF00E9DC05 /* LanguageCodesClient */ = {
+			isa = PBXGroup;
+			children = (
+				44CF15A5288F8A0400E9DC05 /* LanguageCodesClient.swift */,
+				44CF15A7288F8A2C00E9DC05 /* LanguageCodesClientProtocol.swift */,
+			);
+			path = LanguageCodesClient;
+			sourceTree = "<group>";
+		};
+		44CF15AB288F8C1700E9DC05 /* LanguageCodes */ = {
+			isa = PBXGroup;
+			children = (
+				44CF15B3288F8CE800E9DC05 /* Local */,
+				44CF15B0288F8CAD00E9DC05 /* Remote */,
+				44CF15AE288F8C9000E9DC05 /* LanguageCodesRepository.swift */,
+				44CF15AC288F8C3B00E9DC05 /* LanguageCodesRepositoryProtocol.swift */,
+			);
+			path = LanguageCodes;
+			sourceTree = "<group>";
+		};
+		44CF15B0288F8CAD00E9DC05 /* Remote */ = {
+			isa = PBXGroup;
+			children = (
+				44CF15B1288F8CCC00E9DC05 /* LanaguageCodesRemoteRepositoryProtocol.swift */,
+				44CF15B8288F8D8400E9DC05 /* LanguageCodesRemoteRepository.swift */,
+			);
+			path = Remote;
+			sourceTree = "<group>";
+		};
+		44CF15B3288F8CE800E9DC05 /* Local */ = {
+			isa = PBXGroup;
+			children = (
+				44CF15B4288F8D0200E9DC05 /* LanguageCodesLocalRepositoryProtocol.swift */,
+				44CF15BA288F926C00E9DC05 /* LanguageCodesLocalRepository.swift */,
+			);
+			path = Local;
+			sourceTree = "<group>";
+		};
+		44CF15B6288F8D5000E9DC05 /* Remote */ = {
+			isa = PBXGroup;
+			children = (
+				447C363D288A41EF00C7C966 /* GenreRemoteRepository.swift */,
+				447C362D288A3D8C00C7C966 /* GenreRemoteRepositoryProtocol.swift */,
+			);
+			path = Remote;
+			sourceTree = "<group>";
+		};
+		44CF15B7288F8D5A00E9DC05 /* Local */ = {
+			isa = PBXGroup;
+			children = (
+				447C363F288A422200C7C966 /* GenreLocalRepository.swift */,
+				447C363B288A419400C7C966 /* GenreLocalRepositoryProtocol.swift */,
+			);
+			path = Local;
+			sourceTree = "<group>";
+		};
+		44CF15C0288F935D00E9DC05 /* CDGenre */ = {
+			isa = PBXGroup;
+			children = (
+				447C364A288A47E200C7C966 /* CDGenre+CoreDataClass.swift */,
+				447C364B288A47E200C7C966 /* CDGenre+CoreDataProperties.swift */,
+			);
+			path = CDGenre;
+			sourceTree = "<group>";
+		};
+		44CF15C1288F936700E9DC05 /* CDLanguageCode */ = {
+			isa = PBXGroup;
+			children = (
+				44CF15BC288F931700E9DC05 /* CDLanguageCode+CoreDataClass.swift */,
+				44CF15BD288F931700E9DC05 /* CDLanguageCode+CoreDataProperties.swift */,
+			);
+			path = CDLanguageCode;
+			sourceTree = "<group>";
+		};
+		44CF15CB288FCCC700E9DC05 /* Account */ = {
+			isa = PBXGroup;
+			children = (
+				44CF15CE288FDA5200E9DC05 /* Model */,
+				44CF15CC288FCCD600E9DC05 /* AccountRootView.swift */,
+			);
+			path = Account;
+			sourceTree = "<group>";
+		};
+		44CF15CE288FDA5200E9DC05 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				44CF15CF288FDA5E00E9DC05 /* AccountViewModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		44CF15D4288FE2BA00E9DC05 /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Auth;
 			sourceTree = "<group>";
 		};
 		44F3E4682886571E006B6D60 /* ErrorPlaceholder */ = {
@@ -1210,6 +1366,9 @@
 				447C361428892FE000C7C966 /* Triangle.swift in Sources */,
 				447C361928893C0700C7C966 /* CircularProgressView.swift in Sources */,
 				44F3E49A2887AF69006B6D60 /* PeopleResult.swift in Sources */,
+				44CF15B9288F8D8400E9DC05 /* LanguageCodesRemoteRepository.swift in Sources */,
+				44CF15BF288F931700E9DC05 /* CDLanguageCode+CoreDataProperties.swift in Sources */,
+				44CF15AA288F8B6000E9DC05 /* LanguageCode.swift in Sources */,
 				447C3651288A485D00C7C966 /* Managed.swift in Sources */,
 				44F3E4822886A52E006B6D60 /* TVsClientProtocol.swift in Sources */,
 				441761892873DC79004C7DCE /* SortConfiguration.swift in Sources */,
@@ -1229,9 +1388,11 @@
 				447C36162889316200C7C966 /* ImageHeader.swift in Sources */,
 				44F3E4B82887ED30006B6D60 /* LocalizedStrings.swift in Sources */,
 				447C3638288A3F1A00C7C966 /* GenreResult.swift in Sources */,
+				44CF15AD288F8C3B00E9DC05 /* LanguageCodesRepositoryProtocol.swift in Sources */,
 				4417619F2873E2B4004C7DCE /* APIClientError.swift in Sources */,
 				44F3E4782886A320006B6D60 /* TvShowModel.swift in Sources */,
 				447C3672288E773800C7C966 /* ActorsCarouselView.swift in Sources */,
+				44CF15A3288F88C500E9DC05 /* Endpoint.swift in Sources */,
 				441761ED28753968004C7DCE /* Movie.swift in Sources */,
 				447C363E288A41EF00C7C966 /* GenreRemoteRepository.swift in Sources */,
 				4417620428758506004C7DCE /* MoviesView.swift in Sources */,
@@ -1246,18 +1407,23 @@
 				447C3666288E41C700C7C966 /* Language.swift in Sources */,
 				441761F228753FC4004C7DCE /* MoviesClientProtocol.swift in Sources */,
 				447C364D288A47E200C7C966 /* CDGenre+CoreDataProperties.swift in Sources */,
+				44CF15D2288FDF1F00E9DC05 /* AuthProvider.swift in Sources */,
 				44F3E46A28865731006B6D60 /* ErrorPlaceholder.swift in Sources */,
 				44F3E4932887AB5F006B6D60 /* PeopleRootView.swift in Sources */,
+				44CF15B5288F8D0200E9DC05 /* LanguageCodesLocalRepositoryProtocol.swift in Sources */,
 				441761AC2873EE17004C7DCE /* Dictionary+Extensions.swift in Sources */,
 				447C3645288A433300C7C966 /* Model.xcdatamodeld in Sources */,
 				447C364C288A47E200C7C966 /* CDGenre+CoreDataClass.swift in Sources */,
 				447C363C288A419400C7C966 /* GenreLocalRepositoryProtocol.swift in Sources */,
 				441761E328753040004C7DCE /* MoviesRootView.swift in Sources */,
 				441761762872B823004C7DCE /* SplashView.swift in Sources */,
+				44CF15BB288F926C00E9DC05 /* LanguageCodesLocalRepository.swift in Sources */,
 				4417619D2873E078004C7DCE /* NetworkDependencyProtocol.swift in Sources */,
 				44F3E4AB2887E1BF006B6D60 /* PeopleView.swift in Sources */,
+				44CF15C7288F9B3A00E9DC05 /* Entities+LanguageName.swift in Sources */,
 				447C3631288A3E3500C7C966 /* Genre.swift in Sources */,
 				441761A42873E3D3004C7DCE /* ConfigurationProvider.swift in Sources */,
+				44CF15A8288F8A2C00E9DC05 /* LanguageCodesClientProtocol.swift in Sources */,
 				44F3E47028869F24006B6D60 /* TvShowsViewModel.swift in Sources */,
 				447C3674288E7FB800C7C966 /* ActorsListView.swift in Sources */,
 				44F3E48B2886AE0F006B6D60 /* TvShowsView.swift in Sources */,
@@ -1269,6 +1435,8 @@
 				447C3636288A3EBC00C7C966 /* GenreClientProtocol.swift in Sources */,
 				447C3640288A422200C7C966 /* GenreLocalRepository.swift in Sources */,
 				447C3653288A506800C7C966 /* CDGenre+PersistenceStore.swift in Sources */,
+				44CF159E288F884500E9DC05 /* LanguageCodesProvider.swift in Sources */,
+				44CF15B2288F8CCC00E9DC05 /* LanaguageCodesRemoteRepositoryProtocol.swift in Sources */,
 				447C3642288A429400C7C966 /* PersistenceStore.swift in Sources */,
 				441761EA28753921004C7DCE /* MoviesRepositoryProtocol.swift in Sources */,
 				44F3E4862886A68F006B6D60 /* TvShowsProvider.swift in Sources */,
@@ -1287,7 +1455,9 @@
 				447C3657288A563600C7C966 /* GenreRepositoryProtocol.swift in Sources */,
 				44CF1595288E988200E9DC05 /* MovieStatusHelper.swift in Sources */,
 				441761862873D9CE004C7DCE /* ImageConfiguration.swift in Sources */,
+				44CF15C3288F947200E9DC05 /* CDLanguageCode+PersistanceStore.swift in Sources */,
 				447C365D288A7F5700C7C966 /* MovieDetailViewModel.swift in Sources */,
+				44CF15D0288FDA5E00E9DC05 /* AccountViewModel.swift in Sources */,
 				44F3E4952887AB74006B6D60 /* PeopleViewModel.swift in Sources */,
 				441761C428741AC0004C7DCE /* Array+MidElement.swift in Sources */,
 				4417617F2873D953004C7DCE /* ConfigurationRepositoryProtocol.swift in Sources */,
@@ -1297,14 +1467,18 @@
 				44F3E4762886A1F8006B6D60 /* TvShow.swift in Sources */,
 				447C361128892B4000C7C966 /* MovieDetailView.swift in Sources */,
 				44F3E4A42887D2B3006B6D60 /* PeopleRepository.swift in Sources */,
+				44CF15A1288F889600E9DC05 /* DataHubEndpoint.swift in Sources */,
 				441761832873D9A2004C7DCE /* Configuration.swift in Sources */,
 				441761E72875372E004C7DCE /* MoviesViewModel.swift in Sources */,
+				44CF15AF288F8C9000E9DC05 /* LanguageCodesRepository.swift in Sources */,
+				44CF15C5288F999000E9DC05 /* LanguageCodesHandlerProtocol.swift in Sources */,
 				44F3E49D2887AFD2006B6D60 /* PeopleClient.swift in Sources */,
 				447C362C288A3D6A00C7C966 /* GenreRepository.swift in Sources */,
 				441761E128752D15004C7DCE /* RootView.swift in Sources */,
 				44F3E46D28869E40006B6D60 /* TvShowsRootView.swift in Sources */,
+				44CF15CD288FCCD600E9DC05 /* AccountRootView.swift in Sources */,
 				447C363A288A3F7200C7C966 /* GenreProvider.swift in Sources */,
-				441761A62873E3FB004C7DCE /* Endpoint.swift in Sources */,
+				441761A62873E3FB004C7DCE /* TMDBEndpoint.swift in Sources */,
 				441761982873DF00004C7DCE /* ConfigurationResult.swift in Sources */,
 				44F3E4BC2887EDDB006B6D60 /* String+Localized.swift in Sources */,
 				441761F42875401C004C7DCE /* MoviesClient.swift in Sources */,
@@ -1315,6 +1489,8 @@
 				44CF159C288F782600E9DC05 /* CountryCodesProvider.swift in Sources */,
 				4417620A287589FA004C7DCE /* Entities+Confiugration.swift in Sources */,
 				44F3E47B2886A40A006B6D60 /* TVsRepositoryProtocol.swift in Sources */,
+				44CF15A6288F8A0400E9DC05 /* LanguageCodesClient.swift in Sources */,
+				44CF15BE288F931700E9DC05 /* CDLanguageCode+CoreDataClass.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

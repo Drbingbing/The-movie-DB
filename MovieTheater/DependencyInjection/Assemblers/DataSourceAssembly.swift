@@ -40,5 +40,20 @@ final class DataSourceAssembly: Assembly {
             return GenreRepository(localRepository: local, remoteRepository: remote)
         }
         .inObjectScope(.container)
+        
+        container.register(LanguageCodesRepositoryProtocol.self) { resolver in
+            guard let remoteDataSource = resolver.resolve(RemoteDataSourceProtocol.self) else {
+                fatalError("RemoteDataSourceProtocol dependency could not resolved")
+            }
+            
+            guard let localDataSource = resolver.resolve(LocalDataSourceProtocol.self) else {
+                fatalError("LocalDataSourceProtocol dependency could not resolved")
+            }
+            
+            let local = localDataSource.languageCodesRepository()
+            let remote = remoteDataSource.languageCodesRepository()
+            
+            return LanguageCodesRepository(localRepository: local, remoteRepository: remote)
+        }
     }
 }

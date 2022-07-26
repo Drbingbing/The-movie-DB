@@ -19,5 +19,7 @@ protocol RemoteDataSourceProtocol {
     
     func genreRepository() -> GenreRemoteRepositoryProtocol
     
+    func languageCodesRepository() -> LanaguageCodesRemoteRepositoryProtocol
+    
     func configure(apiKey: String, readAccessToken: String)
 }

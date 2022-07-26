@@ -30,7 +30,7 @@ final class MovieModel: Identifiable, Hashable, Equatable {
         self.movieID = movie.id
         self.title = movie.title
         self.originTitle = movie.originalTitle
-        self.originLanguage = movie.originalLanguage
+        self.originLanguage = movie.languageName
         self.budget = movie.budget
         self.revenue = movie.revenue
         self.voteAverage = movie.voteAverage

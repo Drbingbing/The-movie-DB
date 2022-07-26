@@ -25,10 +25,11 @@
 
 "popularPeopleTitle" = "Popular People";
 
-"movieTabBarTitle" = "movie";
-"peopleTabBarTitle" = "people";
-"tvShowTabBarTitle" = "tv";
-"searchTabBarTitle" = "search";
+"movieTabBarTitle" = "Movie";
+"peopleTabBarTitle" = "People";
+"tvShowTabBarTitle" = "Tv";
+"searchTabBarTitle" = "Search";
+"accountTabBarTitle" = "Account";
 
 "movieStatusRumored" = "Rumored";
 "movieStatusPlanned" = "Planned";

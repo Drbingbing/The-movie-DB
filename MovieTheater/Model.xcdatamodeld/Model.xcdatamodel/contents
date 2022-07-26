@@ -4,7 +4,12 @@
         <attribute name="id" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="name" attributeType="String"/>
     </entity>
+    <entity name="CDLanguageCode" representedClassName=".CDLanguageCode" syncable="YES">
+        <attribute name="alpha2" attributeType="String"/>
+        <attribute name="name" attributeType="String"/>
+    </entity>
     <elements>
         <element name="CDGenre" positionX="-54" positionY="-9" width="128" height="59"/>
+        <element name="CDLanguageCode" positionX="-54" positionY="9" width="128" height="59"/>
     </elements>
 </model>

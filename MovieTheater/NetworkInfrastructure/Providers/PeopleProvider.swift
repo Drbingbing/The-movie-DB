@@ -13,7 +13,7 @@ enum PeopleProvider {
 }
 
 
-extension PeopleProvider: Endpoint {
+extension PeopleProvider: TMDBEndpoint {
     
     var path: String {
         switch self {
