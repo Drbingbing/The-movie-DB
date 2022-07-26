@@ -13,6 +13,8 @@ struct MoviesView: View {
     
     var prefetch: (() -> Void)? = nil
     
+    @State var presentingDetail: MovieModel?
+    
     var body: some View {
         ScrollView {
             LazyVGrid(
@@ -23,7 +25,7 @@ struct MoviesView: View {
             ) {
                 ForEach(movies, id: \.self) { movie in
                     Button(action: {
-                        print(movie.title)
+                        presentingDetail = movie
                     }) {
                         MovieView(movie: movie)
                     }
@@ -35,6 +37,10 @@ struct MoviesView: View {
                 }
             }
             .padding(.horizontal)
+        }
+        .fullScreenCover(item: $presentingDetail) { movie in
+            MovieDetailView()
+                .environmentObject(MovieDetailViewModel(movie: movie))
         }
     }
     

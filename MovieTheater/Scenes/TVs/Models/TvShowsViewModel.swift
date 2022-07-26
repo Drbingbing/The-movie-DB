@@ -23,12 +23,12 @@ final class TvShowsViewModel: ObservableObject {
         let remoteDataSource: RemoteDataSourceProtocol = DIContainer.shared.resolve()
         self.interactor = remoteDataSource.tvsRepository()
         self.binding()
-        self.reset()
     }
     
     private func binding() {
         pageThroughSubject
-            .flatMap(self.interactor.getOnAirTvShows)
+            .removeDuplicates()
+            .flatMap(self.fetchTvShows(page:))
             .sink { [weak self] completion in
                 if let error = completion.error {
                     self?.tvState = .error(error)
@@ -52,15 +52,17 @@ final class TvShowsViewModel: ObservableObject {
         }
         .store(in: &cancellable)
         
-        stream.flatMap(fetchTvShows(category:))
-            .sink { [weak self] completion in
-                if let error = completion.error {
-                    self?.tvState = .error(error)
-                }
-            } receiveValue: { [weak self] tvShows in
-                self?.proccessResult(tvShows)
+        stream.flatMap {
+            self.fetchTvShows(category: $0)
+        }
+        .sink { [weak self] completion in
+            if let error = completion.error {
+                self?.tvState = .error(error)
             }
-            .store(in: &cancellable)
+        } receiveValue: { [weak self] tvShows in
+            self?.proccessResult(tvShows)
+        }
+        .store(in: &cancellable)
     }
     
     private func fetchTvShows(page: Int) -> AnyPublisher<[TvShow], Error> {
@@ -112,7 +114,6 @@ final class TvShowsViewModel: ObservableObject {
     }
     
     func reset() {
-        self.tvState = .initial
         pageThroughSubject.send(1)
     }
     

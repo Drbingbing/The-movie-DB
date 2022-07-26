@@ -17,6 +17,7 @@ struct PeopleRootView: View {
             switch peopleViewModel.peopleState {
             case .initial:
                 ProgressView()
+                    .onAppear(perform: peopleViewModel.reset)
             case .paging(let people, _):
                 PeopleView(people: people) {
                     peopleViewModel.fetchNext()
@@ -34,11 +35,14 @@ struct PeopleRootView: View {
             }
             
         }
+        .navigationTitle(Text(LocalizedStrings.popularPeopleTitle()))
     }
 }
 
 struct PeopleView_Previews: PreviewProvider {
     static var previews: some View {
-        PeopleRootView()
+        NavigationView {
+            PeopleRootView()
+        }
     }
 }

@@ -22,7 +22,7 @@ struct RootView: View {
             }
             .tabItem {
                 Image(systemName: "film")
-                Text("電影")
+                Text(LocalizedStrings.movieTabBarTitle())
             }
             
             NavigationView {
@@ -36,8 +36,8 @@ struct RootView: View {
                     }
             }
             .tabItem {
-                Image(systemName: "4k.tv")
-                Text("電視節目")
+                Image(systemName: "tv")
+                Text(LocalizedStrings.tvShowTabBarTitle())
             }
             
             NavigationView {
@@ -51,16 +51,16 @@ struct RootView: View {
                     }
             }
             .tabItem {
-                Image(systemName: "person.crop.rectangle")
-                Text("人物")
+                Image(systemName: "person")
+                Text(LocalizedStrings.peopleTabBarTitle())
             }
             
             NavigationView {
                 
             }
             .tabItem {
-                Image(systemName: "ellipsis")
-                Text("更多")
+                Image(systemName: "magnifyingglass")
+                Text(LocalizedStrings.searchTabBarTitle())
             }
         }
     }

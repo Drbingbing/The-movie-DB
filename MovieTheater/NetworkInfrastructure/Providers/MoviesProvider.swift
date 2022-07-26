@@ -14,6 +14,10 @@ enum MoviesProvider {
     case getPopularMovies(page: Int)
     
     case getUpcomingMovies(page: Int)
+    
+    case getMovieDetail(id: Int)
+    
+    case getMovieCredits(id: Int)
 }
 
 extension MoviesProvider: Endpoint {
@@ -26,6 +30,10 @@ extension MoviesProvider: Endpoint {
             return "/3/movie/popular"
         case .getUpcomingMovies:
             return "/3/movie/upcoming"
+        case let .getMovieDetail(id):
+            return "/3/movie/\(id)"
+        case let .getMovieCredits(id):
+            return "/3/movie/\(id)/credits"
         }
     }
     
@@ -37,19 +45,23 @@ extension MoviesProvider: Endpoint {
             return ["page": page, "region": "TW"]
         case let .getUpcomingMovies(page):
             return ["page": page, "region": "TW"]
+        case .getMovieDetail:
+            return nil
+        case .getMovieCredits:
+            return nil
         }
     }
     
     var parameterEncoding: ParameterEndcoding {
         switch self {
-        case .getNowPlayingMovies, .getPopularMovies, .getUpcomingMovies:
+        case .getNowPlayingMovies, .getPopularMovies, .getUpcomingMovies, .getMovieDetail, .getMovieCredits:
             return .defaultEncoding
         }
     }
     
     var method: HttpMethod {
         switch self {
-        case .getNowPlayingMovies, .getPopularMovies, .getUpcomingMovies:
+        case .getNowPlayingMovies, .getPopularMovies, .getUpcomingMovies, .getMovieDetail, .getMovieCredits:
             return .get
         }
     }

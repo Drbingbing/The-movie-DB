@@ -33,4 +33,20 @@ final class MoviesClient: APIClient, MoviesClientProtocol {
             .mapError { $0 as Error }
             .eraseToAnyPublisher()
     }
+    
+    func getMovieDetail(_ id: Int) -> AnyPublisher<Movie, Error> {
+        let request = MoviesProvider.getMovieDetail(id: id).request
+        
+        return fetch(request: request)
+            .mapError { $0 as Error }
+            .eraseToAnyPublisher()
+    }
+    
+    func getMovieCredits(_ id: Int) -> AnyPublisher<CreditsResult, Error> {
+        let request = MoviesProvider.getMovieCredits(id: id).request
+        
+        return fetch(request: request)
+            .mapError { $0 as Error }
+            .eraseToAnyPublisher()
+    }
 }

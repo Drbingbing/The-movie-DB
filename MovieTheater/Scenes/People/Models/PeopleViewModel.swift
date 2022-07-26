@@ -20,12 +20,12 @@ final class PeopleViewModel: ObservableObject {
         let remoteDataSource: RemoteDataSourceProtocol = DIContainer.shared.resolve()
         self.interactor = remoteDataSource.peopleRepository()
         self.binding()
-        self.reset()
     }
     
     private func binding() {
         
         pageThroughSubject
+            .removeDuplicates()
             .flatMap(self.interactor.getPopularPeople)
             .sink { [weak self] completion in
                 if let error = completion.error {
@@ -46,7 +46,6 @@ final class PeopleViewModel: ObservableObject {
     }
     
     func reset() {
-        self.peopleState = .initial
         self.pageThroughSubject.send(1)
     }
     

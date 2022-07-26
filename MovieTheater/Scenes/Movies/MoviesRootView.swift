@@ -17,6 +17,7 @@ struct MoviesRootView: View {
             switch moviesViewModel.movieState {
             case .initial:
                 ProgressView()
+                    .onAppear(perform: moviesViewModel.reset)
             case .paging(let movies, _):
                 MoviesView(movies: movies) {
                     self.moviesViewModel.fetchNext()

@@ -20,7 +20,6 @@ struct SplashView: View {
                 TMDBView()
             }
         }
-        .onAppear(perform: splashViewModel.initialDownload)
     }
 }
 

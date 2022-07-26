@@ -26,4 +26,28 @@ enum LocalizedStrings: String, Localizable {
     case popularTvSearchTitle
     case onTheAirTvSearchTitle
     case topRatedTvSearchTitle
+    
+    case popularPeopleTitle
+    
+    case movieTabBarTitle
+    case searchTabBarTitle
+    case tvShowTabBarTitle
+    case peopleTabBarTitle
+    
+    case movieStatusRumored
+    case movieStatusPlanned
+    case movieStatusInProduction
+    case movieStatusPostProduction
+    case movieStatusReleased
+    case movieStatusCancelled
+    
+    case movieDetailCategoryTitle
+    case movieDetailReleasedDateTitle
+    case movieDetailOverviewTitle
+    case movieDetailOriginMovieTitle
+    case movieDetailStatusTitle
+    case movieDetailOriginLanguageTitle
+    case movieDetailBudgetTitle
+    case movieDetailCreditsTitle
+    case movieDetailRevenueTitle
 }

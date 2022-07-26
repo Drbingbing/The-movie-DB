@@ -10,7 +10,8 @@ import Combine
 
 final class SplashViewModel: ObservableObject {
     
-    let interactor: ConfigurationRepositoryProtocol
+    let configurationInteractor: ConfigurationRepositoryProtocol
+    let genreInteractor: GenreRepositoryProtocol
     let configurationHandler: ConfigurationHandlerProtocol
     
     private var cancellables: [AnyCancellable] = []
@@ -19,33 +20,33 @@ final class SplashViewModel: ObservableObject {
     
     init() {
         let remoteDataSource: RemoteDataSourceProtocol = DIContainer.shared.resolve()
-        self.interactor = remoteDataSource.configurationRepository()
-        self.configurationHandler = DIContainer.shared.resolve()        
+        self.configurationInteractor = remoteDataSource.configurationRepository()
+        self.configurationHandler = DIContainer.shared.resolve()
+        self.genreInteractor = DIContainer.shared.resolve()
         self.binding()
     }
     
     func binding() {
         
-        let result = interactor.getAppConfiguration()
-        
-        $state
-            .removeDuplicates()
-            .prefix(while: { $0 == .loading })
-            .flatMap { _ in result }
-            .replaceError(with: nil)
-            .sink { [weak self] configuration in
+        configurationInteractor.getAppConfiguration()
+            .zip(genreInteractor.fetchAll())
+            .sink { completion in
+                self.state = .end
+            } receiveValue: { [weak self] configuration, genres in
                 self?.updateConfiguration(configuration)
-                self?.state = .end
+                self?.updateAvilableGenres(genres)
             }
             .store(in: &cancellables)
+
     }
     
-    func initialDownload() {
-        self.state = .loading
-    }
     
     func updateConfiguration(_ configuration: Configuration?) {
         configurationHandler.setConfiguration(configuration)
+    }
+    
+    func updateAvilableGenres(_ genres: [Genre]) {
+        
     }
 }
 

@@ -7,23 +7,39 @@
 
 import Foundation
 
-final class MovieModel: Hashable, Equatable {
+final class MovieModel: Identifiable, Hashable, Equatable {
     
     let id: UUID
     
+    let movieID: Int
     let title: String
     let releaseDate: String?
     let posterURL: URL?
     let backdropURL: URL?
     let overview: String
+    let voteAverage: Double
+    let genreIDs: [Int]
+    let originTitle: String
+    let originLanguage: String
+    let status: String?
+    let budget: Int?
+    let revenue: Int?
     
     init(movie: Movie) {
         self.id = UUID()
+        self.movieID = movie.id
         self.title = movie.title
+        self.originTitle = movie.originalTitle
+        self.originLanguage = movie.originalLanguage
+        self.budget = movie.budget
+        self.revenue = movie.revenue
+        self.voteAverage = movie.voteAverage
         self.posterURL = movie.posterURL
         self.backdropURL = movie.backdropURL
         self.overview = movie.overview
+        self.status = movie.status
         self.releaseDate = movie.releaseDate
+        self.genreIDs = movie.genreIDs ?? []
     }
     
     func hash(into hasher: inout Hasher) {

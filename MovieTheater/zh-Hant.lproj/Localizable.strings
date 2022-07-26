@@ -22,3 +22,27 @@
 "popularTvSearchTitle" = "熱門";
 "onTheAirTvSearchTitle" = "電視播出";
 "topRatedTvSearchTitle" = "評分最高";
+
+"popularPeopleTitle" = "熱門人物";
+
+"movieTabBarTitle" = "電影";
+"peopleTabBarTitle" = "人物";
+"tvShowTabBarTitle" = "電視";
+"searchTabBarTitle" = "搜索";
+
+"movieStatusRumored" = "傳聞";
+"movieStatusPlanned" = "計畫中";
+"movieStatusInProduction" = "拍攝中";
+"movieStatusPostProduction" = "後期製作";
+"movieStatusReleased" = "已發佈";
+"movieStatusCancelled" = "已取消";
+
+"movieDetailCategoryTitle" = "類型";
+"movieDetailReleasedDateTitle" = "上映時間";
+"movieDetailOverviewTitle" = "概要";
+"movieDetailOriginMovieTitle" = "原始標題";
+"movieDetailStatusTitle" = "狀態";
+"movieDetailOriginLanguageTitle" = "原始語言";
+"movieDetailBudgetTitle" = "電影成本";
+"movieDetailCreditsTitle" = "主要演員";
+"movieDetailRevenueTitle" = "收入";

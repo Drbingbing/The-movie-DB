@@ -78,3 +78,17 @@ extension Person: ImageConfigurable {
         return nil
     }
 }
+
+extension Actor: ImageConfigurable {
+    
+    var posterURL: URL? {
+        guard let posterPath = profilePath else { return nil }
+        
+        let urlString = regularImageBaseURLString.appending(posterPath)
+        return URL(string: urlString)
+    }
+    
+    var backdropURL: URL? {
+        return nil
+    }
+}

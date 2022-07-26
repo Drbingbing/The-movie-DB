@@ -22,3 +22,27 @@
 "popularTvSearchTitle" = "Airing Today";
 "onTheAirTvSearchTitle" = "On TV";
 "topRatedTvSearchTitle" = "Top Rated";
+
+"popularPeopleTitle" = "Popular People";
+
+"movieTabBarTitle" = "movie";
+"peopleTabBarTitle" = "people";
+"tvShowTabBarTitle" = "tv";
+"searchTabBarTitle" = "search";
+
+"movieStatusRumored" = "Rumored";
+"movieStatusPlanned" = "Planned";
+"movieStatusInProduction" = "In Production";
+"movieStatusPostProduction" = "Post Production";
+"movieStatusReleased" = "Released";
+"movieStatusCancelled" = "Cancelled";
+
+"movieDetailCategoryTitle" = "Category";
+"movieDetailReleasedDateTitle" = "Release Date";
+"movieDetailOverviewTitle" = "Overview";
+"movieDetailOriginMovieTitle" = "Original Title";
+"movieDetailStatusTitle" = "Status";
+"movieDetailOriginLanguageTitle" = "Original Langauge";
+"movieDetailBudgetTitle" = "Budget";
+"movieDetailCreditsTitle" = "Top Billed Cast";
+"movieDetailRevenueTitle" = "Revenue";

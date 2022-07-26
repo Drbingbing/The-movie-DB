@@ -14,4 +14,8 @@ protocol MoviesClientProtocol {
     func getPopularMovies(page: Int) -> AnyPublisher<MovieResult, Error>
     
     func getUpcomingMovies(page: Int) -> AnyPublisher<MovieResult, Error>
+    
+    func getMovieDetail(_ id: Int) -> AnyPublisher<Movie, Error>
+    
+    func getMovieCredits(_ id: Int) -> AnyPublisher<CreditsResult, Error>
 }

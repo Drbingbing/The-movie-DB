@@ -17,6 +17,7 @@ struct TvShowsRootView: View {
             switch tvshowsViewModel.tvState {
             case .initial:
                 ProgressView()
+                    .onAppear(perform: tvshowsViewModel.reset)
             case .paging(let tvs, _):
                 TvShowsView(tvs: tvs) {
                     tvshowsViewModel.fetchNext()

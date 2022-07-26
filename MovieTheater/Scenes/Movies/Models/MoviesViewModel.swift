@@ -26,12 +26,12 @@ final class MoviesViewModel: ObservableObject {
         let remoteDataSource: RemoteDataSourceProtocol = DIContainer.shared.resolve()
         self.interactor = remoteDataSource.moviesRepository()
         self.binding()
-        self.reset()
     }
     
     private func binding() {
         
         pageIndicatorSubject
+            .removeDuplicates()
             .flatMap(self.fetchMovies(page:))
             .sink { [weak self] completion in
                 if let error = completion.error {
@@ -47,7 +47,20 @@ final class MoviesViewModel: ObservableObject {
             .share()
         
         stream
-            .flatMap(self.fetchMovies(category:))
+            .sink { [weak self] value in
+                self?.updateNavigationTitle(for: value)
+            }
+            .store(in: &cancellable)
+        
+        stream.sink { [weak self] value in
+            self?.movieState = .initial
+        }
+        .store(in: &cancellable)
+        
+        stream
+            .flatMap {
+                self.fetchMovies(category: $0)
+            }
             .sink { [weak self] completion in
                 if let error = completion.error {
                     self?.movieState = .error(error)
@@ -57,12 +70,6 @@ final class MoviesViewModel: ObservableObject {
             }
             .store(in: &cancellable)
         
-        stream
-            .sink { [weak self] value in
-                self?.movieState = .initial
-                self?.updateNavigationTitle(for: value)
-            }
-            .store(in: &cancellable)
     }
     
     private func proccessResult(_ entities: [Movie]) {
@@ -107,7 +114,6 @@ final class MoviesViewModel: ObservableObject {
     }
     
     func reset() {
-        self.movieState = .initial
         pageIndicatorSubject.send(1)
     }
     

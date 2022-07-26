@@ -33,4 +33,14 @@ final class MovieRepository: MoviesRepositoryProtocol {
             .map(\.result)
             .eraseToAnyPublisher()
     }
+    
+    func getMovieDetail(_ id: Int) -> AnyPublisher<Movie, Error> {
+        client.getMovieDetail(id)
+    }
+    
+    func getMovieCredits(_ id: Int) -> AnyPublisher<[Actor], Error> {
+        client.getMovieCredits(id)
+            .map(\.cast)
+            .eraseToAnyPublisher()
+    }
 }

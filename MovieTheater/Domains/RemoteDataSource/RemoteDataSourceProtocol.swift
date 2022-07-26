@@ -17,5 +17,7 @@ protocol RemoteDataSourceProtocol {
     
     func peopleRepository() -> PeopleRepositoryProtocol
     
+    func genreRepository() -> GenreRemoteRepositoryProtocol
+    
     func configure(apiKey: String, readAccessToken: String)
 }
