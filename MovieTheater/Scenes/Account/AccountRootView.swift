@@ -12,37 +12,68 @@ struct AccountRootView: View {
     @StateObject var accountViewModel = AccountViewModel()
     
     var body: some View {
-        ScrollView {
-            avator
-            recordSection
-            
-            Divider()
-                .padding(.horizontal, 12)
-            
-            functionalSection
-            
-            Divider()
-                .padding(.horizontal, 12)
-            
-            profileSection
-            
-            Divider()
-                .padding(.horizontal, 12)
-            
-            Button(action: {}) {
-                HStack(spacing: 12) {
-                    Image(systemName: "hand.point.up.left")
-                    Text("登出")
-                    Spacer()
+        Group {
+            if let _ = accountViewModel.currentUser {
+                ScrollView {
+                    avator
+                    recordSection
+                    
+                    Divider()
+                        .padding(.horizontal, 12)
+                    
+                    functionalSection
+                    
+                    Divider()
+                        .padding(.horizontal, 12)
+                    
+                    profileSection
+                    
+                    Divider()
+                        .padding(.horizontal, 12)
+                    
+                    Button(action: {}) {
+                        HStack(spacing: 12) {
+                            Image(systemName: "hand.point.up.left")
+                            Text("登出")
+                            Spacer()
+                        }
+                        .font(.system(size: 14))
+                    }
+                    .frame(maxWidth: .infinity)
+                    .tint(.black)
+                    .padding(.vertical, 8)
+                    .padding(.horizontal, 12)
                 }
-                .font(.system(size: 14))
+            } else {
+                VStack(spacing: 20) {
+                    Image(systemName: "person.crop.circle.badge.questionmark")
+                        .resizable()
+                        .frame(width: 120, height: 100)
+                        .foregroundColor(.pink)
+                    Group {
+                        if accountViewModel.isStartAuthorization {
+                            ProgressView()
+                        } else {
+                            Button(action: accountViewModel.startAuthorization) {
+                                Text("Sign In with TMDB")
+                                    .padding(.vertical, 12)
+                                    .padding(.horizontal, 12)
+                                    .background(.white)
+                                    .clipShape(RoundedRectangle(cornerRadius: 8))
+                                    .shadow(color: .black.opacity(0.1), radius: 2, x: 0, y: 1)
+                            }
+                            .buttonStyle(ScaleButtonStyle())
+                        }
+                    }
+                }
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .transientAlert($accountViewModel.authError)
             }
-            .frame(maxWidth: .infinity)
-            .tint(.black)
-            .padding(.vertical, 8)
-            .padding(.horizontal, 12)
         }
         .navigationTitle(Text("個人資訊"))
+        .sheet(item: $accountViewModel.authURL) { url in
+            AuthPermissionView(authPermissionURL: url, authorized: $accountViewModel.authorized)
+        }
     }
     
     var avator: some View {
@@ -55,7 +86,7 @@ struct AccountRootView: View {
                         Text("B")
                             .foregroundColor(.white)
                     }
-                Text("BingBing5487")
+                Text(accountViewModel.currentUser?.userName ?? "")
                     .font(.title2.bold())
                 Spacer()
             }

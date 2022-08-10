@@ -26,6 +26,10 @@ final class MovieDetailViewModel: ObservableObject {
     
     @Published var showCredits: Bool = false
     
+    @Published var showSimilars: MovieModel?
+    
+    @Published var similarMovies: [MovieModel] = []
+    
     init(movie: MovieModel) {
         let remoteDataSource: RemoteDataSourceProtocol = DIContainer.shared.resolve()
         self.moviesRepository = remoteDataSource.moviesRepository()
@@ -33,10 +37,10 @@ final class MovieDetailViewModel: ObservableObject {
         self.backdropURL = movie.backdropURL
         self.navigationTitle = movie.title
         self.genreInteractor = DIContainer.shared.resolve()
-        self.binding()
+        self.fetch()
     }
     
-    private func binding() {
+    func fetch() {
         let genreIDs = movie.genreIDs
         
         Publishers.Sequence<[Int], Never>(sequence: genreIDs)
@@ -53,10 +57,6 @@ final class MovieDetailViewModel: ObservableObject {
                 self?.genreName = value
             }
             .store(in: &cancellables)
-
-    }
-    
-    func fetch() {
         
         let movie = self.movie
         moviesRepository.getMovieDetail(movie.movieID)
@@ -67,17 +67,37 @@ final class MovieDetailViewModel: ObservableObject {
             }
             .store(in: &cancellables)
         
-        moviesRepository.getMovieCredits(movie.movieID)
-            .catch { error in
-                Empty<[Actor], Never>()
-            }
-            .map {
-                $0.map(ActorModel.init)
-            }
-            .sink { [weak self] value in
-                self?.actors = value
-            }
-            .store(in: &cancellables)
+        if actors.isEmpty {
+            moviesRepository.getMovieCredits(movie.movieID)
+                .`catch` { error in
+                    Empty<[Actor], Never>()
+                }
+                .map {
+                    $0.map(ActorModel.init)
+                }
+                .sink { [weak self] value in
+                    self?.actors = value
+                }
+                .store(in: &cancellables)
+        }
+        
+        if similarMovies.isEmpty {
+            moviesRepository.getSimilarMovies(movie.movieID, page: 1)
+                .`catch` { error in
+                    Empty<[Movie], Never>()
+                }
+                .map {
+                    $0.map(MovieModel.init)
+                }
+                .sink { [weak self] value in
+                    self?.similarMovies = value
+                }
+                .store(in: &cancellables)
+        }
+    }
+    
+    func showSimilarMovies() {
+        self.showSimilars = movie
     }
     
     func showingCredits() {

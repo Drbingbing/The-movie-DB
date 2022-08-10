@@ -11,33 +11,31 @@ import Kingfisher
 struct MovieDetailView: View {
     
     @Environment(\.dismiss) private var dismiss
-    @EnvironmentObject var movieModel: MovieDetailViewModel
+    @ObservedObject var movieModel: MovieDetailViewModel
     
     var body: some View {
-        ZStack(alignment: .topTrailing) {
+        ScrollView {
             let movie = movieModel.movie
-            
-            ScrollView {
-               
-                Group {
-                    ImageHeader(
-                        backdropURL: movieModel.backdropURL,
-                        posterURL: movie.posterURL
-                    )
-                    .frame(width: nil, height: 200)
-                    
-                    HStack {
-                        Text(movie.title)
-                            .bold()
-                            .font(.title)
-                        Spacer()
-                        
-                        CircularProgressView(value: movie.voteAverage)
-                            .frame(width: 40)
-                    }
-                    .padding()
-                }
+            Group {
+                ImageHeader(
+                    backdropURL: movieModel.backdropURL,
+                    posterURL: movie.posterURL
+                )
+                .frame(width: nil, height: 200)
                 
+                HStack {
+                    Text(movie.title)
+                        .bold()
+                        .font(.title)
+                    Spacer()
+                    
+                    CircularProgressView(value: movie.voteAverage)
+                        .frame(width: 40)
+                }
+                .padding()
+            }
+            
+            Group {
                 HStack(alignment: .center, spacing: 0) {
                     
                     Button(action: {}) {
@@ -53,7 +51,7 @@ struct MovieDetailView: View {
                         .foregroundColor(.black)
                         .padding()
                     }
-                      
+                    
                     Button(action: {}) {
                         VStack {
                             Image(systemName: "heart")
@@ -66,8 +64,8 @@ struct MovieDetailView: View {
                         .foregroundColor(.black)
                         .padding()
                     }
-                        
-                    Button(action: movieModel.showingCredits) {
+                    
+                    Button(action: {}) {
                         VStack {
                             Image(systemName: "bookmark")
                                 .resizable()
@@ -79,7 +77,7 @@ struct MovieDetailView: View {
                         .foregroundColor(.black)
                         .padding()
                     }
-                        
+                    
                     Button(action: {}) {
                         VStack {
                             Image(systemName: "hand.thumbsup")
@@ -111,7 +109,9 @@ struct MovieDetailView: View {
                     }
                     Spacer()
                 }
-                
+            }
+            
+            Group {
                 VStack(alignment: .leading, spacing: 0) {
                     HStack {
                         Text(LocalizedStrings.movieDetailOverviewTitle())
@@ -139,7 +139,9 @@ struct MovieDetailView: View {
                 }
                 .padding(.vertical, 8)
                 .padding(.horizontal, 16)
-                
+            }
+            
+            Group {
                 if let movieStatus = movie.status {
                     VStack(alignment: .leading, spacing: 0) {
                         HStack {
@@ -155,7 +157,9 @@ struct MovieDetailView: View {
                     .padding(.vertical, 8)
                     .padding(.horizontal, 16)
                 }
-                
+            }
+            
+            Group {
                 VStack(alignment: .leading, spacing: 0) {
                     HStack {
                         Text(LocalizedStrings.movieDetailOriginLanguageTitle())
@@ -169,72 +173,113 @@ struct MovieDetailView: View {
                 }
                 .padding(.vertical, 8)
                 .padding(.horizontal, 16)
-                
-                
-                Group {
-                    if let budget = movie.budget, budget > 0 {
-                        VStack(alignment: .leading, spacing: 0) {
-                            HStack {
-                                Text(LocalizedStrings.movieDetailBudgetTitle())
-                                    .bold()
-                                    .font(.headline)
-                                Spacer()
-                            }
-
-                            Text("$\(budget)")
-                                .padding(.vertical, 4)
-                        }
-                        .padding(.vertical, 8)
-                        .padding(.horizontal, 16)
-                    }
-
-                    if let revenue = movie.revenue, revenue > 0 {
-                        VStack(alignment: .leading, spacing: 0) {
-                            HStack {
-                                Text(LocalizedStrings.movieDetailRevenueTitle())
-                                    .bold()
-                                    .font(.headline)
-                                Spacer()
-                            }
-
-                            Text("$\(revenue)")
-                                .padding(.vertical, 4)
-                        }
-                        .padding(.vertical, 8)
-                        .padding(.horizontal, 16)
-                    }
-                }
-                
-                if !movieModel.actors.isEmpty {
+            }
+            
+            Group {
+                if let budget = movie.budget, budget > 0 {
                     VStack(alignment: .leading, spacing: 0) {
                         HStack {
-                            Text(LocalizedStrings.movieDetailCreditsTitle())
+                            Text(LocalizedStrings.movieDetailBudgetTitle())
                                 .bold()
                                 .font(.headline)
                             Spacer()
                         }
-                        ActorsCarouselView(actors: $movieModel.actors, onMore: movieModel.showingCredits) 
-                        .frame(height: 250)
+                        
+                        Text("$\(budget)")
+                            .padding(.vertical, 4)
+                    }
+                    .padding(.vertical, 8)
+                    .padding(.horizontal, 16)
+                }
+                
+                if let revenue = movie.revenue, revenue > 0 {
+                    VStack(alignment: .leading, spacing: 0) {
+                        HStack {
+                            Text(LocalizedStrings.movieDetailRevenueTitle())
+                                .bold()
+                                .font(.headline)
+                            Spacer()
+                        }
+                        
+                        Text("$\(revenue)")
+                            .padding(.vertical, 4)
                     }
                     .padding(.vertical, 8)
                     .padding(.horizontal, 16)
                 }
             }
-            .onAppear(perform: movieModel.fetch)
             
-            Button(action: {
-                dismiss()
-            }) {
-                Image(systemName: "xmark.circle.fill")
-                    .foregroundColor(.gray)
+            if !movieModel.actors.isEmpty {
+                VStack(alignment: .leading, spacing: 0) {
+                    HStack {
+                        Text(LocalizedStrings.movieDetailCreditsTitle())
+                            .bold()
+                            .font(.headline)
+                        Spacer()
+                    }
+                    ActorsCarouselView(
+                        actors: $movieModel.actors,
+                        destination: showActor
+                    ).frame(height: 250)
+                }
+                .padding(.vertical, 8)
+                .padding(.horizontal, 16)
             }
-            .padding(.vertical, 20)
-            .padding(.horizontal, 8)
+            
+            if !movieModel.similarMovies.isEmpty {
+                VStack(alignment: .leading, spacing: 0) {
+                    HStack {
+                        Text(LocalizedStrings.movieDetailSimilarTitle())
+                            .bold()
+                            .font(.headline)
+                        Spacer()
+                    }
+                    
+                    MovieCarouselView(
+                        movieId: movieModel.movie.movieID,
+                        movies: movieModel.similarMovies,
+                        destination: showMovie
+                    )
+                    .frame(height: 250)
+                }
+                .padding(.vertical, 8)
+                .padding(.horizontal, 16)
+            }
+            
+            Rectangle()
+                .fill(.clear)
+                .frame(height: 40)
         }
-        .sheet(isPresented: $movieModel.showCredits) {
-            ActorsListView(actors: movieModel.actors)
-        }
+        .navigationBarTitleDisplayMode(.inline)
         .ignoresSafeArea()
+        .navigationTransparentBar(tintColor: nil)
+        .navigationBarBackButtonHidden(true)
+        .toolbar {
+            ToolbarItemGroup(placement: .navigationBarTrailing) {
+                Button(action: popUp) {
+                    Image(systemName: "xmark")
+                        .resizable()
+                        .frame(width: 10, height: 10)
+                        .padding([.horizontal, .vertical], 8)
+                        .foregroundColor(.black)
+                        .background(.regularMaterial, in: Circle())
+                }
+            }
+        }
+    }
+    
+    func showActor(person: ActorModel) -> some View {
+        Text(person.name)
+    }
+    
+    func showMovie(movie: MovieModel) -> some View {
+        NavigationLazyView(
+            MovieDetailView(movieModel: MovieDetailViewModel(movie: movie))
+        )
+    }
+    
+    func popUp() {
+        dismiss()
     }
 }
 
@@ -287,10 +332,11 @@ struct MovieDetailView_Previews: PreviewProvider {
     
     static var previews: some View {
         
-        MovieDetailView()
-            .environmentObject(
-                MovieDetailViewModel(movie: MovieModel(movie: movie))
+        NavigationView {
+            MovieDetailView(
+                movieModel: MovieDetailViewModel(movie: MovieModel(movie: movie))
             )
+        }
     }
 }
 

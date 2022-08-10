@@ -13,7 +13,7 @@ final class LanguageCodesClient: APIClient, LanguageCodesClientProtocol {
         let request = LanguageCodesProvider.getLanguageCodes.request
         
         return fetch(request: request)
-            .mapError { $0 as Error }
+            .mapError(\.asError)
             .eraseToAnyPublisher()
     }
 }

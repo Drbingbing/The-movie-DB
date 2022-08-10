@@ -14,7 +14,7 @@ final class MoviesClient: APIClient, MoviesClientProtocol {
         let request = MoviesProvider.getNowPlayingMovies(page: page).request
         
         return fetch(request: request)
-            .mapError { $0 as Error }
+            .mapError(\.asError)
             .eraseToAnyPublisher()
     }
     
@@ -22,7 +22,7 @@ final class MoviesClient: APIClient, MoviesClientProtocol {
         let request = MoviesProvider.getPopularMovies(page: page).request
         
         return fetch(request: request)
-            .mapError { $0 as Error }
+            .mapError(\.asError)
             .eraseToAnyPublisher()
     }
     
@@ -30,7 +30,7 @@ final class MoviesClient: APIClient, MoviesClientProtocol {
         let request = MoviesProvider.getUpcomingMovies(page: page).request
         
         return fetch(request: request)
-            .mapError { $0 as Error }
+            .mapError(\.asError)
             .eraseToAnyPublisher()
     }
     
@@ -38,7 +38,7 @@ final class MoviesClient: APIClient, MoviesClientProtocol {
         let request = MoviesProvider.getMovieDetail(id: id).request
         
         return fetch(request: request)
-            .mapError { $0 as Error }
+            .mapError(\.asError)
             .eraseToAnyPublisher()
     }
     
@@ -46,7 +46,15 @@ final class MoviesClient: APIClient, MoviesClientProtocol {
         let request = MoviesProvider.getMovieCredits(id: id).request
         
         return fetch(request: request)
-            .mapError { $0 as Error }
+            .mapError(\.asError)
+            .eraseToAnyPublisher()
+    }
+    
+    func getSimilarMovies(_ id: Int, page: Int) -> AnyPublisher<MovieResult, Error> {
+        let request = MoviesProvider.getSimilarMovies(page: page, id: id).request
+        
+        return fetch(request: request)
+            .mapError(\.asError)
             .eraseToAnyPublisher()
     }
 }

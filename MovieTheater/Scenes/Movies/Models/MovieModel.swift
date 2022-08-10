@@ -21,6 +21,7 @@ final class MovieModel: Identifiable, Hashable, Equatable {
     let genreIDs: [Int]
     let originTitle: String
     let originLanguage: String
+    let genreName: String
     let status: String?
     let budget: Int?
     let revenue: Int?
@@ -39,6 +40,7 @@ final class MovieModel: Identifiable, Hashable, Equatable {
         self.overview = movie.overview
         self.status = movie.status
         self.releaseDate = movie.releaseDate
+        self.genreName = movie.genreName
         self.genreIDs = movie.genreIDs ?? []
     }
     

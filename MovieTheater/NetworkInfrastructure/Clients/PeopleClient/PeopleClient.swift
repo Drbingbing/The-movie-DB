@@ -13,7 +13,7 @@ final class PeopleClient: APIClient, PeopleClientProtocol {
         let request = PeopleProvider.getPopularPeople(page: page).request
         
         return fetch(request: request)
-            .mapError { $0 as Error }
+            .mapError(\.asError)
             .eraseToAnyPublisher()
     }
 }

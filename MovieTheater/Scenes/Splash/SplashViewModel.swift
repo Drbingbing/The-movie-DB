@@ -15,6 +15,7 @@ final class SplashViewModel: ObservableObject {
     private let languageCodesInteractor: LanguageCodesRepositoryProtocol
     private let configurationHandler: ConfigurationHandlerProtocol
     private let languageCodesHandler: LanguageCodesHandlerProtocol
+    private let genreHandler: GenreHandlerProtocol
     
     private var cancellables: [AnyCancellable] = []
     
@@ -27,6 +28,7 @@ final class SplashViewModel: ObservableObject {
         self.genreInteractor = DIContainer.shared.resolve()
         self.languageCodesInteractor = DIContainer.shared.resolve()
         self.languageCodesHandler = DIContainer.shared.resolve()
+        self.genreHandler = DIContainer.shared.resolve()
         self.binding()
     }
     
@@ -58,7 +60,7 @@ final class SplashViewModel: ObservableObject {
     }
     
     private func updateAvailableGenres(_ genres: [Genre]) {
-        
+        genreHandler.setGenres(genres)
     }
     
     private func updateLanguageCodes(_ codes: [LanguageCode]) {

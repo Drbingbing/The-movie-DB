@@ -43,4 +43,10 @@ final class MovieRepository: MoviesRepositoryProtocol {
             .map(\.cast)
             .eraseToAnyPublisher()
     }
+    
+    func getSimilarMovies(_ id: Int, page: Int) -> AnyPublisher<[Movie], Error> {
+        client.getSimilarMovies(id, page: page)
+            .map(\.result)
+            .eraseToAnyPublisher()
+    }
 }

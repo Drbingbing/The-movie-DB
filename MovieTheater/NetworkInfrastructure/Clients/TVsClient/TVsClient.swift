@@ -13,7 +13,7 @@ final class TVsClient: TVsClientProtocol, APIClient {
         let request = TvShowsProvider.getOnAirTvShows(page: page).request
         
         return fetch(request: request)
-            .mapError { $0 as Error }
+            .mapError(\.asError)
             .eraseToAnyPublisher()
     }
     
@@ -21,7 +21,7 @@ final class TVsClient: TVsClientProtocol, APIClient {
         let request = TvShowsProvider.getAiringTodayTvShows(page: page).request
         
         return fetch(request: request)
-            .mapError { $0 as Error }
+            .mapError(\.asError)
             .eraseToAnyPublisher()
     }
     
@@ -29,7 +29,7 @@ final class TVsClient: TVsClientProtocol, APIClient {
         let request = TvShowsProvider.getTopRatedTvShows(page: page).request
         
         return fetch(request: request)
-            .mapError { $0 as Error }
+            .mapError(\.asError)
             .eraseToAnyPublisher()
     }
     
@@ -37,7 +37,7 @@ final class TVsClient: TVsClientProtocol, APIClient {
         let request = TvShowsProvider.getPopularTvShows(page: page).request
         
         return fetch(request: request)
-            .mapError { $0 as Error }
+            .mapError(\.asError)
             .eraseToAnyPublisher()
     }
 }

@@ -21,5 +21,7 @@ protocol RemoteDataSourceProtocol {
     
     func languageCodesRepository() -> LanaguageCodesRemoteRepositoryProtocol
     
+    func authRepository() -> AuthRepositoryProtocol
+    
     func configure(apiKey: String, readAccessToken: String)
 }

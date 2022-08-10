@@ -24,6 +24,7 @@ struct RootView: View {
                 Image(systemName: "film")
                 Text(LocalizedStrings.movieTabBarTitle())
             }
+            .navigationTransparentBar(tintColor: nil)
             
             NavigationView {
                 TvShowsRootView()

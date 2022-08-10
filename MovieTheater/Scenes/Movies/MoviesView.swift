@@ -24,9 +24,7 @@ struct MoviesView: View {
                 spacing: 12
             ) {
                 ForEach(movies, id: \.self) { movie in
-                    Button(action: {
-                        presentingDetail = movie
-                    }) {
+                    NavigationLink(destination: { showMovieDetail(movie) }) {
                         MovieView(movie: movie)
                     }
                     .buttonStyle(ScaleButtonStyle())
@@ -38,10 +36,12 @@ struct MoviesView: View {
             }
             .padding(.horizontal)
         }
-        .fullScreenCover(item: $presentingDetail) { movie in
-            MovieDetailView()
-                .environmentObject(MovieDetailViewModel(movie: movie))
-        }
+    }
+    
+    private func showMovieDetail(_ movie: MovieModel) -> some View {
+        NavigationLazyView(
+            MovieDetailView(movieModel: MovieDetailViewModel(movie: movie))
+        )
     }
     
     private func prefetch(at movie: MovieModel) {

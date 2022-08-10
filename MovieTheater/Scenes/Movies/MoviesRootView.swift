@@ -41,6 +41,9 @@ struct MoviesRootView: View {
                 menu
             }
         }
+        .navigationBarBackground {
+            Color.white
+        }
     }
     
     var menu: some View {

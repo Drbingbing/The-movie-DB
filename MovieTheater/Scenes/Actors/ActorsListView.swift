@@ -13,34 +13,35 @@ struct ActorsListView: View {
     var actors: [ActorModel]
     
     var body: some View {
-        NavigationView {
-            ScrollView {
-                LazyVStack(alignment: .leading) {
-                    ForEach(actors) { person in
-                        
-                        HStack(spacing: 20) {
-                            KFImage(person.profilePath)
-                                .resizable()
-                                .placeholder { _ in
-                                    ProgressView()
-                                }
-                                .aspectRatio(contentMode: .fill)
-                                .frame(width: 100, height: 100)
-                                .clipShape(RoundedRectangle(cornerRadius: 8))
-                            
-                            VStack(alignment: .leading) {
-                                Text(person.name)
-                                    .bold()
-                                    .font(.title2)
-                                Text(person.character)
+        ScrollView {
+            LazyVStack(alignment: .leading) {
+                ForEach(actors) { person in
+                    
+                    HStack(spacing: 20) {
+                        KFImage(person.profilePath)
+                            .resizable()
+                            .placeholder { _ in
+                                ProgressView()
                             }
+                            .aspectRatio(contentMode: .fill)
+                            .frame(width: 100, height: 100)
+                            .clipShape(RoundedRectangle(cornerRadius: 8))
+                        
+                        VStack(alignment: .leading) {
+                            Text(person.name)
+                                .bold()
+                                .font(.title2)
+                            Text(person.character)
                         }
-                        .padding(.horizontal, 12)
                     }
+                    .padding(.horizontal, 12)
                 }
             }
-            .navigationTitle(Text("主要演員"))
-            .navigationBarTitleDisplayMode(.inline)
+        }
+        .navigationTitle(Text("主要演員"))
+        .navigationBarTitleDisplayMode(.inline)
+        .navigationBarBackground {
+            Color.white
         }
     }
 }

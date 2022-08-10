@@ -11,5 +11,7 @@ protocol LocalDataSourceProtocol {
     
     func genreRepository() -> GenreLocalRepositoryProtocol
     
+    func userRepository() -> UserLocalRepositoryProtocol
+    
     func languageCodesRepository() -> LanguageCodesLocalRepositoryProtocol
 }

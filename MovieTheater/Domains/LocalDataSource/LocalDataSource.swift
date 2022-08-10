@@ -21,6 +21,11 @@ final class LocalDataSource: LocalDataSourceProtocol {
         return GenreLocalRepository(store: store)
     }
     
+    func userRepository() -> UserLocalRepositoryProtocol {
+        let store: PersistenceStore<CDUser> = PersistenceStore(self.coreDataStack.persistentContainer)
+        return UserLocalRepository(store: store)
+    }
+    
     func languageCodesRepository() -> LanguageCodesLocalRepositoryProtocol {
         let store: PersistenceStore<CDLanguageCode> = PersistenceStore(self.coreDataStack.persistentContainer)
         return LanguageCodesLocalRepository(store: store)

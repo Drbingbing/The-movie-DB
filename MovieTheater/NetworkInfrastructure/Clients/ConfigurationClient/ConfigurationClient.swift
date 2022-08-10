@@ -14,7 +14,7 @@ final class ConfigurationClient: APIClient, ConfigurationClientProtocol {
         let request = ConfigurationProvider.getAPIConfiguration.request
         
         return fetch(request: request)
-            .mapError { $0 as Error }
+            .mapError(\.asError)
             .eraseToAnyPublisher()
     }
 }

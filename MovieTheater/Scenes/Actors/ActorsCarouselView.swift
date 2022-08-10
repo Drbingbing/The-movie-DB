@@ -7,21 +7,26 @@
 
 import SwiftUI
 
-struct ActorsCarouselView: View {
+struct ActorsCarouselView<Destination>: View where Destination: View {
     
     @Binding var actors: [ActorModel]
     
-    var onMore: () -> Void
+    var destination: (ActorModel) -> Destination
     
     var body: some View {
         GeometryReader { proxy in
             ScrollView(.horizontal) {
                 LazyHStack(spacing: 20) {
                     ForEach(actors.prefix(10)) { person in
-                        ActorView(person: person)
+                        NavigationLink(destination: {
+                            destination(person)
+                        }, label: {
+                            ActorView(person: person)
+                        })
+                        .buttonStyle(ScaleButtonStyle())
                     }
                     
-                    Button(action: onMore) {
+                    NavigationLink(destination: ActorsListView(actors: actors)) {
                         HStack {
                             Text("檢視更多")
                                 .bold()
@@ -75,7 +80,9 @@ struct ActorsCarouselView_Previews: PreviewProvider {
     }
     
     static var previews: some View {
-        ActorsCarouselView(actors: .constant(actors.map(ActorModel.init)), onMore: {})
-            .frame(height: 250)
+        ActorsCarouselView(
+            actors: .constant(actors.map(ActorModel.init)),
+            destination: { _ in Text("ddd") }
+        ).frame(height: 250)
     }
 }

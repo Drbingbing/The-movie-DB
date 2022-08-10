@@ -18,6 +18,8 @@ enum MoviesProvider {
     case getMovieDetail(id: Int)
     
     case getMovieCredits(id: Int)
+    
+    case getSimilarMovies(page: Int, id: Int)
 }
 
 extension MoviesProvider: TMDBEndpoint {
@@ -34,6 +36,8 @@ extension MoviesProvider: TMDBEndpoint {
             return "/3/movie/\(id)"
         case let .getMovieCredits(id):
             return "/3/movie/\(id)/credits"
+        case let .getSimilarMovies(_, id):
+            return "/3/movie/\(id)/similar"
         }
     }
     
@@ -49,19 +53,21 @@ extension MoviesProvider: TMDBEndpoint {
             return nil
         case .getMovieCredits:
             return nil
+        case let .getSimilarMovies(page, _):
+            return ["page": page, "region": "TW"]
         }
     }
     
     var parameterEncoding: ParameterEndcoding {
         switch self {
-        case .getNowPlayingMovies, .getPopularMovies, .getUpcomingMovies, .getMovieDetail, .getMovieCredits:
+        case .getNowPlayingMovies, .getPopularMovies, .getUpcomingMovies, .getMovieDetail, .getMovieCredits, .getSimilarMovies:
             return .defaultEncoding
         }
     }
     
     var method: HttpMethod {
         switch self {
-        case .getNowPlayingMovies, .getPopularMovies, .getUpcomingMovies, .getMovieDetail, .getMovieCredits:
+        case .getNowPlayingMovies, .getPopularMovies, .getUpcomingMovies, .getMovieDetail, .getMovieCredits, .getSimilarMovies:
             return .get
         }
     }

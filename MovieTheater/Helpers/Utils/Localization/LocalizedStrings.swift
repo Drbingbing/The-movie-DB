@@ -51,4 +51,5 @@ enum LocalizedStrings: String, Localizable {
     case movieDetailBudgetTitle
     case movieDetailCreditsTitle
     case movieDetailRevenueTitle
+    case movieDetailSimilarTitle
 }

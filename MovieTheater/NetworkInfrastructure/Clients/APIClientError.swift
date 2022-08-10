@@ -32,4 +32,8 @@ extension APIClientError: CustomDebugStringConvertible {
             return "Error during deserialization of the response: \(error)"
         }
     }
+    
+    var asError: Error {
+        return self
+    }
 }

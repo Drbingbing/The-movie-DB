@@ -20,5 +20,10 @@ final class HandlerAssembly: Assembly {
             return LanguageCodesHandler()
         }
         .inObjectScope(.container)
+        
+        container.register(GenreHandlerProtocol.self) { _ in
+            return GenreHandler()
+        }
+        .inObjectScope(.container)
     }
 }

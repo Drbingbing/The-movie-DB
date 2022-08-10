@@ -46,6 +46,13 @@ final class RemoteDataSource: RemoteDataSourceProtocol {
         return LanguageCodesRemoteRepository(client: client)
     }
     
+    func authRepository() -> AuthRepositoryProtocol {
+        let authClient = AuthClient()
+        let accountClient = AccountClient()
+        
+        return AuthRepository(authClient: authClient, accountClient: accountClient)
+    }
+    
     func configure(apiKey: String, readAccessToken: String) {
         NetworkConfiguration.shared.configuration(apiKey: apiKey, readAccessToken: readAccessToken)
     }

@@ -55,5 +55,15 @@ final class DataSourceAssembly: Assembly {
             
             return LanguageCodesRepository(localRepository: local, remoteRepository: remote)
         }
+        
+        container.register(UserRepositoryProtocol.self) { resolver in
+            guard let localDataSource = resolver.resolve(LocalDataSourceProtocol.self) else {
+                fatalError("LocalDataSourceProtocol dependency could not resolved")
+            }
+            
+            let local = localDataSource.userRepository()
+            
+            return UserRepository(localRepository: local)
+        }
     }
 }

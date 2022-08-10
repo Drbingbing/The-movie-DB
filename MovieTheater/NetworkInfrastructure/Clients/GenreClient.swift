@@ -13,7 +13,7 @@ final class GenreClient: GenreClientProtocol, APIClient {
         let request = GenreProvider.getAll.request
         
         return fetch(request: request)
-            .mapError { $0 as Error }
+            .mapError(\.asError)
             .eraseToAnyPublisher()
     }
 }
