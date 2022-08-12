@@ -11,14 +11,16 @@ struct RootView: View {
     var body: some View {
         TabView {
             NavigationView {
-                MoviesRootView()
-                    .toolbar {
-                        ToolbarItem(placement: .navigationBarLeading) {
-                            TMDBView(fileName: "tmdb_short")
-                                .frame(width: 24, height: 24)
-                                .clipShape(RoundedRectangle(cornerRadius: 4))
-                        }
+                NavigationLazyView(
+                    MoviesRootView()
+                )
+                .toolbar {
+                    ToolbarItem(placement: .navigationBarLeading) {
+                        TMDBView(fileName: "tmdb_short")
+                            .frame(width: 24, height: 24)
+                            .clipShape(RoundedRectangle(cornerRadius: 4))
                     }
+                }
             }
             .tabItem {
                 Image(systemName: "film")
@@ -27,14 +29,16 @@ struct RootView: View {
             .navigationTransparentBar(tintColor: nil)
             
             NavigationView {
-                TvShowsRootView()
-                    .toolbar {
-                        ToolbarItem(placement: .navigationBarLeading) {
-                            TMDBView(fileName: "tmdb_short")
-                                .frame(width: 24, height: 24)
-                                .clipShape(RoundedRectangle(cornerRadius: 4))
-                        }
+                NavigationLazyView(
+                    TvShowsRootView()
+                )
+                .toolbar {
+                    ToolbarItem(placement: .navigationBarLeading) {
+                        TMDBView(fileName: "tmdb_short")
+                            .frame(width: 24, height: 24)
+                            .clipShape(RoundedRectangle(cornerRadius: 4))
                     }
+                }
             }
             .tabItem {
                 Image(systemName: "tv")
@@ -42,14 +46,15 @@ struct RootView: View {
             }
             
             NavigationView {
-                PeopleRootView()
-                    .toolbar {
-                        ToolbarItem(placement: .navigationBarLeading) {
-                            TMDBView(fileName: "tmdb_short")
-                                .frame(width: 24, height: 24)
-                                .clipShape(RoundedRectangle(cornerRadius: 4))
-                        }
+                NavigationLazyView(
+                    PeopleRootView()
+                ).toolbar {
+                    ToolbarItem(placement: .navigationBarLeading) {
+                        TMDBView(fileName: "tmdb_short")
+                            .frame(width: 24, height: 24)
+                            .clipShape(RoundedRectangle(cornerRadius: 4))
                     }
+                }
             }
             .tabItem {
                 Image(systemName: "star")

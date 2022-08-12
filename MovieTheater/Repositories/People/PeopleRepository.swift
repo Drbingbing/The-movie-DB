@@ -21,4 +21,20 @@ final class PeopleRepository: PeopleRepositoryProtocol {
             .map(\.results)
             .eraseToAnyPublisher()
     }
+    
+    func getPersonDetail(_ id: Int) -> AnyPublisher<Person, Error> {
+        client.getPersonDetail(id)
+            .eraseToAnyPublisher()
+    }
+    
+    func getMovieCredit(_ id: Int) -> AnyPublisher<[Movie], Error> {
+        client.getMovieCredits(id)
+            .map(\.cast)
+            .eraseToAnyPublisher()
+    }
+    
+    func getExternalIDs(_ id: Int) -> AnyPublisher<ExternalID, Error> {
+        client.getExternalIDs(id)
+            .eraseToAnyPublisher()
+    }
 }

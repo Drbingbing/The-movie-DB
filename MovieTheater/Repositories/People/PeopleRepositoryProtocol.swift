@@ -11,4 +11,9 @@ protocol PeopleRepositoryProtocol {
     
     func getPopularPeople(page: Int) -> AnyPublisher<[Person], Error>
     
+    func getPersonDetail(_ id: Int) -> AnyPublisher<Person, Error>
+    
+    func getMovieCredit(_ id: Int) -> AnyPublisher<[Movie], Error>
+    
+    func getExternalIDs(_ id: Int) -> AnyPublisher<ExternalID, Error>
 }

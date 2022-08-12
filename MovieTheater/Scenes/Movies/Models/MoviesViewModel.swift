@@ -19,20 +19,16 @@ final class MoviesViewModel: ObservableObject {
     
     @Published var category: Category = .nowPlaying
     
-    private let pageIndicatorSubject = PassthroughSubject<Int, Never>()
     private var cancellable: [AnyCancellable] = []
     
     init() {
         let remoteDataSource: RemoteDataSourceProtocol = DIContainer.shared.resolve()
         self.interactor = remoteDataSource.moviesRepository()
-        self.binding()
     }
     
-    private func binding() {
+    func fetch(page: Int) {
         
-        pageIndicatorSubject
-            .removeDuplicates()
-            .flatMap(self.fetchMovies(page:))
+        self.fetchMovies(page: page)
             .sink { [weak self] completion in
                 if let error = completion.error {
                     self?.movieState = .error(error)
@@ -43,6 +39,7 @@ final class MoviesViewModel: ObservableObject {
             .store(in: &cancellable)
         
         let stream = $category
+            .dropFirst()
             .removeDuplicates()
             .share()
         
@@ -114,12 +111,13 @@ final class MoviesViewModel: ObservableObject {
     }
     
     func reset() {
-        pageIndicatorSubject.send(1)
+        self.movieState = .initial
+        self.fetch(page: 1)
     }
     
     func fetchNext() {
         let next = self.movieState.currentPage + 1
-        pageIndicatorSubject.send(next)
+        self.fetch(page: next)
     }
     
     func categories() -> [Category] {

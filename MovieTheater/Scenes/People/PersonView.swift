@@ -19,7 +19,19 @@ struct PersonView: View {
 struct PersonView_Previews: PreviewProvider {
     
     static var person: Person {
-        Person(id: 28782, adult: false, profilePath: "", name: "Monica Bellucci", popularity: 48.609344)
+        Person(
+            id: 28782,
+            adult: false,
+            profilePath: "",
+            name: "Monica Bellucci",
+            popularity: 48.609344,
+            birthday: "1963-12-18",
+            birthPlace: "Shawnee, Oklahoma, USA",
+            knownFor: "Acting",
+            knownAs: ["畢.彼特"],
+            gender: 2,
+            biography: "William Bradley \"Brad\" Pitt (born December)"
+        )
     }
     
     static var previews: some View {

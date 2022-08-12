@@ -42,6 +42,7 @@ extension APIClient {
                 return APIClientError.deserializationError(error: error)
             }
             .receive(on: dependency.mainScheduler)
+            .print("API")
             .eraseToAnyPublisher()
     }
     

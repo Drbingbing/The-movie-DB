@@ -27,6 +27,7 @@ struct MoviesView: View {
                     NavigationLink(destination: { showMovieDetail(movie) }) {
                         MovieView(movie: movie)
                     }
+                    .id(movie.id)
                     .buttonStyle(ScaleButtonStyle())
                     .frame(height: 150)
                     .onAppear {

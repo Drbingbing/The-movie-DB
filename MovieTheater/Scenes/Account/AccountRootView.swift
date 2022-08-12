@@ -67,7 +67,9 @@ struct AccountRootView: View {
                     }
                 }
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
-                .transientAlert($accountViewModel.authError)
+                .snackBar(isPresenting: $accountViewModel.authError) { error in
+                    TransientAlert(text: error)
+                }
             }
         }
         .navigationTitle(Text("個人資訊"))

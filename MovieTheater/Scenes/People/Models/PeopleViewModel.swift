@@ -11,7 +11,6 @@ import Combine
 final class PeopleViewModel: ObservableObject {
     
     private let interactor: PeopleRepositoryProtocol
-    private let pageThroughSubject = PassthroughSubject<Int, Never>()
     private var cancellable: [AnyCancellable] = []
     
     @Published var peopleState: ViewState<PersonModel> = .initial
@@ -19,14 +18,11 @@ final class PeopleViewModel: ObservableObject {
     init() {
         let remoteDataSource: RemoteDataSourceProtocol = DIContainer.shared.resolve()
         self.interactor = remoteDataSource.peopleRepository()
-        self.binding()
     }
     
-    private func binding() {
+    func fetch(page: Int) {
         
-        pageThroughSubject
-            .removeDuplicates()
-            .flatMap(self.interactor.getPopularPeople)
+        self.interactor.getPopularPeople(page: page)
             .sink { [weak self] completion in
                 if let error = completion.error {
                     self?.peopleState = .error(error)
@@ -46,7 +42,8 @@ final class PeopleViewModel: ObservableObject {
     }
     
     func reset() {
-        self.pageThroughSubject.send(1)
+        self.peopleState = .initial
+        self.fetch(page: 1)
     }
     
     func fetchNext() {
@@ -55,6 +52,6 @@ final class PeopleViewModel: ObservableObject {
         }
         
         let next = peopleState.currentPage + 1
-        self.pageThroughSubject.send(next)
+        self.fetch(page: next)
     }
 }

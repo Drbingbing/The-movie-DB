@@ -238,7 +238,9 @@ struct MovieDetailView: View {
                     MovieCarouselView(
                         movieId: movieModel.movie.movieID,
                         movies: movieModel.similarMovies,
-                        destination: showMovie
+                        destination: showMovie,
+                        showMore: true,
+                        prefix: 5
                     )
                     .frame(height: 250)
                 }
@@ -269,7 +271,9 @@ struct MovieDetailView: View {
     }
     
     func showActor(person: ActorModel) -> some View {
-        Text(person.name)
+        NavigationLazyView(
+            PersonDetailView(personModel: PersonDetailViewModel(person: person.asDomain()))
+        )
     }
     
     func showMovie(movie: MovieModel) -> some View {

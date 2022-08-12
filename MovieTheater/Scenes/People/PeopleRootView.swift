@@ -17,7 +17,9 @@ struct PeopleRootView: View {
             switch peopleViewModel.peopleState {
             case .initial:
                 ProgressView()
-                    .onAppear(perform: peopleViewModel.reset)
+                    .onAppear {
+                        peopleViewModel.fetch(page: 1)
+                    }
             case .paging(let people, _):
                 PeopleView(people: people) {
                     peopleViewModel.fetchNext()

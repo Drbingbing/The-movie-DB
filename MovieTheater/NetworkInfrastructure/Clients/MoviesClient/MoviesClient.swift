@@ -42,7 +42,7 @@ final class MoviesClient: APIClient, MoviesClientProtocol {
             .eraseToAnyPublisher()
     }
     
-    func getMovieCredits(_ id: Int) -> AnyPublisher<CreditsResult, Error> {
+    func getMovieCredits(_ id: Int) -> AnyPublisher<ActorCreditResult, Error> {
         let request = MoviesProvider.getMovieCredits(id: id).request
         
         return fetch(request: request)

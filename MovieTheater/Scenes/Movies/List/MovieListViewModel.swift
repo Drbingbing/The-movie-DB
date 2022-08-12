@@ -16,9 +16,9 @@ final class MovieListViewModel: ObservableObject {
     
     @Published var movieState: ViewState<MovieModel>
     
-    private let movieId: Int
+    private let movieId: Int?
     
-    init(movieId: Int, _ initialValue: [MovieModel] = []) {
+    init(movieId: Int? = nil, _ initialValue: [MovieModel] = []) {
         let remoteDataSource: RemoteDataSourceProtocol = DIContainer.shared.resolve()
         self.moviesRepository = remoteDataSource.moviesRepository()
         self.movieState = .paging(initialValue, next: 1)
@@ -29,15 +29,17 @@ final class MovieListViewModel: ObservableObject {
     func fetch() {
         let next = movieState.currentPage + 1
         
-        moviesRepository.getSimilarMovies(movieId, page: next)
-            .sink { [weak self] completion in
-                if let error = completion.error {
-                    self?.movieState = .error(error)
+        if let movieId = movieId {
+            moviesRepository.getSimilarMovies(movieId, page: next)
+                .sink { [weak self] completion in
+                    if let error = completion.error {
+                        self?.movieState = .error(error)
+                    }
+                } receiveValue: { [weak self] movies in
+                    self?.proccessResult(movies)
                 }
-            } receiveValue: { [weak self] movies in
-                self?.proccessResult(movies)
-            }
-            .store(in: &cancellable)
+                .store(in: &cancellable)
+        }
     }
     
     private func proccessResult(_ entities: [Movie]) {

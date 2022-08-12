@@ -15,20 +15,16 @@ final class TvShowsViewModel: ObservableObject {
     @Published var navigationTitle: String = LocalizedStrings.popularTvTitle()
     @Published var category: Category = .popular
     
-    private let pageThroughSubject = PassthroughSubject<Int, Never>()
     private let interactor: TVsRepositoryProtocol
     private var cancellable: [AnyCancellable] = []
     
     init() {
         let remoteDataSource: RemoteDataSourceProtocol = DIContainer.shared.resolve()
         self.interactor = remoteDataSource.tvsRepository()
-        self.binding()
     }
     
-    private func binding() {
-        pageThroughSubject
-            .removeDuplicates()
-            .flatMap(self.fetchTvShows(page:))
+    func fetch(page: Int) {
+        self.fetchTvShows(page: page)
             .sink { [weak self] completion in
                 if let error = completion.error {
                     self?.tvState = .error(error)
@@ -39,6 +35,7 @@ final class TvShowsViewModel: ObservableObject {
             .store(in: &cancellable)
         
         let stream = $category
+            .dropFirst()
             .removeDuplicates()
             .share()
         
@@ -114,12 +111,13 @@ final class TvShowsViewModel: ObservableObject {
     }
     
     func reset() {
-        pageThroughSubject.send(1)
+        self.tvState = .initial
+        self.fetch(page: 1)
     }
     
     func fetchNext() {
         let page = self.tvState.currentPage + 1
-        pageThroughSubject.send(page)
+        self.fetch(page: page)
     }
     
     func categories() -> [Category] {

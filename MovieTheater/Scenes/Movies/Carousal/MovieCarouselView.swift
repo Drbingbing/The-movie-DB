@@ -10,16 +10,17 @@ import Kingfisher
 
 struct MovieCarouselView<Destination>: View where Destination: View {
     
-    var movieId: Int
-    var movies: [MovieModel]
-    
+    var movieId: Int? = nil
+    var movies: [MovieModel] = []
     var destination: (MovieModel) -> Destination
+    var showMore: Bool = false
+    var prefix: Int? = nil
     
     var body: some View {
         GeometryReader { proxy in
             ScrollView(.horizontal) {
                 LazyHStack(spacing: 20) {
-                    ForEach(movies.prefix(5)) { movie in
+                    ForEach(movies.prefix(prefix ?? movies.count)) { movie in
                         NavigationLink(destination: { onDestination(movie: movie) }) {
                             KFImage(movie.posterURL)
                                 .resizable()
@@ -34,15 +35,17 @@ struct MovieCarouselView<Destination>: View where Destination: View {
                         .buttonStyle(ScaleButtonStyle())
                     }
                     
-                    NavigationLink(destination: showMovieList) {
-                        HStack {
-                            Text("檢視更多")
-                                .bold()
-                            Image(systemName: "chevron.forward")
-                                .font(.body.bold())
+                    if showMore {
+                        NavigationLink(destination: showMovieList) {
+                            HStack {
+                                Text("檢視更多")
+                                    .bold()
+                                Image(systemName: "chevron.forward")
+                                    .font(.body.bold())
+                            }
                         }
+                        .tint(.black)
                     }
-                    .tint(.black)
                 }
                 .padding([.horizontal, .vertical], 12)
             }

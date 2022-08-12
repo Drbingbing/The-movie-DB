@@ -10,6 +10,8 @@ import Foundation
 protocol TMDBEndpoint: Endpoint {
     
     var headers: [String: String]? { get }
+    
+    var language: String { get }
 }
 
 extension TMDBEndpoint {
@@ -26,7 +28,7 @@ extension TMDBEndpoint {
         return NetworkConfiguration.shared.apiKey
     }
     
-    private var language: String {
+    var language: String {
         return "zh"
     }
     

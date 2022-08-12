@@ -7,52 +7,23 @@
 
 import SwiftUI
 
-struct TransientAlert<Item>: View where Item: CustomStringConvertible {
+struct TransientAlert: View {
     
-    @Binding var presenting: Item?
-    @State private var visible: Bool = false
+    var text: String
     
     var body: some View {
-        Rectangle()
-            .fill(.clear)
-            .overlay(alignment: .bottom) {
-                Group {
-                    if let presenting = presenting {
-                        Text(presenting.description)
-                            .id(presenting.description)
-                            .padding([.horizontal, .vertical], 12)
-                            .background {
-                                RoundedRectangle(cornerRadius: 10)
-                                    .fill(.white)
-                            }
-                            .shadow(color: .black.opacity(0.1), radius: 2, x: 1, y: 1)
-                            .padding([.horizontal, .vertical], 12)
-                            .frame(maxWidth: .infinity)
-                            .transition(
-                                AnyTransition.move(edge: .bottom).combined(with: .opacity)
-                            )
-                            .offset(y: self.presenting == nil ? 150 : 0)
-                            .onAppear {
-                                Timer.scheduledTimer(withTimeInterval: 3, repeats: false) { _ in
-                                    self.presenting = nil
-                                }
-                            }
-                    }
-                }
-                .animation(.spring(), value: self.presenting != nil)
+        Text(text)
+            .id(text)
+            .padding([.horizontal, .vertical], 12)
+            .background {
+                RoundedRectangle(cornerRadius: 10)
+                    .fill(.white)
             }
+            .shadow(color: .black.opacity(0.1), radius: 2, x: 1, y: 1)
+            .padding([.horizontal, .vertical], 12)
     }
 }
 
-extension View {
-    
-    func transientAlert<T>(_ presented: Binding<T?>) -> some View where T: (CustomStringConvertible & Equatable) {
-        
-        self.overlay {
-            TransientAlert(presenting: presented)
-        }
-    }
-}
 
 struct TransientAlert_Previews: PreviewProvider {
     static var previews: some View {
@@ -60,25 +31,18 @@ struct TransientAlert_Previews: PreviewProvider {
     }
     
     struct Wrapper: View {
+        
         @State var mock: String?
         
         var body: some View {
-            VStack {
-                Button(action: {
-                    mock = "fdsfdsfdsfsdfdsfdsfdsfdsf"
-                }) {
-                    Text("fdffdsfdfsdsfd")
+            Rectangle()
+                .fill(.cyan)
+                .onTapGesture {
+                    mock = "sdsdsadadsadsadsadsadsadsadsa+ \(Int.random(in: 0...100))"
                 }
-            }
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .overlay {
-                TransientAlert(presenting: $mock)
-            }
-            .onAppear {
-                Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
-                    mock = "12321313321313123213213"
+                .snackBar(isPresenting: $mock) { mock in
+                    TransientAlert(text: mock)
                 }
-            }
         }
     }
 }

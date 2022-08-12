@@ -22,7 +22,7 @@ struct PeopleView: View {
                 spacing: 12
             ) {
                 ForEach(people, id: \.self) { person in
-                    Button(action: {}) {
+                    NavigationLink(destination: { showPersonDetail(person) }) {
                         PersonView(person: person)
                     }
                     .buttonStyle(ScaleButtonStyle())
@@ -34,6 +34,12 @@ struct PeopleView: View {
             }
             .padding(.horizontal)
         }
+    }
+    
+    private func showPersonDetail(_ perosn: PersonModel) -> some View {
+        NavigationLazyView(
+            PersonDetailView(personModel: PersonDetailViewModel(person: perosn))
+        )
     }
     
     private func prefetch(at person: PersonModel) {
