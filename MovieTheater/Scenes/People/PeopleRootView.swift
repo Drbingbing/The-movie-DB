@@ -38,6 +38,9 @@ struct PeopleRootView: View {
             
         }
         .navigationTitle(Text(LocalizedStrings.popularPeopleTitle()))
+        .navigationBarBackground {
+            Color.white
+        }
     }
 }
 

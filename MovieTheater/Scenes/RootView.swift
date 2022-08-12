@@ -44,6 +44,7 @@ struct RootView: View {
                 Image(systemName: "tv")
                 Text(LocalizedStrings.tvShowTabBarTitle())
             }
+            .navigationTransparentBar(tintColor: nil)
             
             NavigationView {
                 NavigationLazyView(
@@ -60,6 +61,7 @@ struct RootView: View {
                 Image(systemName: "star")
                 Text(LocalizedStrings.peopleTabBarTitle())
             }
+            .navigationTransparentBar(tintColor: nil)
             
             NavigationView {
                 AccountRootView()
@@ -75,6 +77,7 @@ struct RootView: View {
                 Image(systemName: "person")
                 Text(LocalizedStrings.accountTabBarTitle())
             }
+            .navigationTransparentBar(tintColor: nil)
         }
     }
 }

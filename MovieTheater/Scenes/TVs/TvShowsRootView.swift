@@ -43,6 +43,9 @@ struct TvShowsRootView: View {
                 menu
             }
         }
+        .navigationBarBackground {
+            Color.white
+        }
     }
     
     var menu: some View {
