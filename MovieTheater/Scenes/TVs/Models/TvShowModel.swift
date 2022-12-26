@@ -16,11 +16,15 @@ final class TvShowModel: Hashable, Equatable {
     let id: UUID
     let name: String
     let posterURL: URL?
+    let backdropURL: URL?
+    let voteAverage: Double
     
     init(tv: TvShow) {
         self.id = UUID()
         self.name = tv.name
         self.posterURL = tv.posterURL
+        self.backdropURL = tv.backdropURL
+        self.voteAverage = Double(tv.voteAverage)
     }
     
     

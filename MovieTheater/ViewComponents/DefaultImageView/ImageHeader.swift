@@ -20,10 +20,7 @@ struct ImageHeader: View {
             ZStack(alignment: .bottomLeading) {
                 KFImage(backdropURL)
                     .resizable()
-                    .placeholder{ _ in
-                        ProgressView()
-                    }
-                    .overlay(.black.opacity(0.3))
+                    .overlay(backdropURL == nil ? Color.white : Color.black.opacity(0.3))
                     .overlay(
                         Triangle()
                             .fill(Color.white)

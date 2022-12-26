@@ -22,9 +22,12 @@ struct TvShowsView: View {
                 spacing: 12
             ) {
                 ForEach(tvs, id: \.self) { tv in
-                    Button(action: {}) {
+                    NavigationLink(destination: {
+                        showTvDetail(tv)
+                    }) {
                         TvShowView(tv: tv)
                     }
+                    .id(tv.id)
                     .buttonStyle(ScaleButtonStyle())
                     .onAppear {
                         self.prefetch(at: tv)
@@ -34,6 +37,12 @@ struct TvShowsView: View {
             }
             .padding(.horizontal)
         }
+    }
+    
+    private func showTvDetail(_ tv: TvShowModel) -> some View {
+        NavigationLazyView(
+            Text(tv.name)
+        )
     }
     
     private func prefetch(at tv: TvShowModel) {
