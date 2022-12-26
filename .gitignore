@@ -21,7 +21,7 @@ DerivedData/
 !default.mode2v3
 *.perspectivev3
 !default.perspectivev3
-
+.DS_Store
 ## Obj-C/Swift specific
 *.hmap
 
@@ -67,7 +67,6 @@ playground.xcworkspace
 Carthage/Build/
 
 # Accio dependency management
-Dependencies/
 .accio/
 
 # fastlane
@@ -88,3 +87,4 @@ fastlane/test_output
 # https://github.com/johnno1962/injectionforxcode
 
 iOSInjectionProject/
+
